@@ -9,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 env = environ.Env(
     ON_SERVER=(bool, True), LOGGING_LEVEL=(str, "INFO"), DEBUG=(bool, False)
 )
-IGNORE_DOT_ENV_FILE = env.bool("IGNORE_DOT_ENV_FILE", default=False)
+IGNORE_DOT_ENV_FILE = 'on'
 if not IGNORE_DOT_ENV_FILE:
     # reading .env file
     environ.Env.read_env(env_file=os.path.join(BASE_DIR, ".env"))
