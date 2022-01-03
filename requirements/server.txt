@@ -1,6 +1,6 @@
 -r ./base.txt
-
+psycopg2-binary
 gunicorn==20.0.4
-psycopg2==2.8.4
+psycopg2-binary
 whitenoise==5.0.1
 sentry-sdk==0.14.3
