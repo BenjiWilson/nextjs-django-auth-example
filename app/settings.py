@@ -20,6 +20,7 @@ if not IGNORE_DOT_ENV_FILE:
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'r4rq%2w_w_4wdz84+sy%*+v&ome!esrie93-d26y(g(grzv#sy')
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 ON_SERVER = env("ON_SERVER", default=True)
