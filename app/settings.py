@@ -1,7 +1,7 @@
 from datetime import timedelta
 import os
 import environ
-
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -105,8 +105,26 @@ WSGI_APPLICATION = "app.wsgi.application"
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    "default": env.db(),
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
+
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd6p4bkt06v3fai',
+        'USER': 'gzxqdjsiauqupt',
+        'PASSWORD': '9c3d73541e5a3d9c2ea95b48afc136fa521d1b03f6601f8088162ed202176a3b',
+        'HOST': 'ec2-34-206-245-175.compute-1.amazonaws.com', 
+        'PORT': '5432',
+    }
+
+
 }
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

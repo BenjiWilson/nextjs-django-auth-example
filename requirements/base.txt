@@ -7,3 +7,4 @@ django-cors-headers
 ipython
 requests
 django-debug-toolbar
+django_pgviews
