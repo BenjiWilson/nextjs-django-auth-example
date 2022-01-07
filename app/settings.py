@@ -29,7 +29,7 @@ ALLOWED_HOSTS = ["*"]
 CORS_ALLOW_CREDENTIALS = True
 
 
-CORS_ORIGIN_REGEX_WHITELIST = ['nextjs-django-auth-example-six.vercel.app']
+# CORS_ORIGIN_REGEX_WHITELIST = ['https://nextjs-django-auth-example-six.vercel.app']
 
 
 # if ON_SERVER:
@@ -39,6 +39,7 @@ CORS_ORIGIN_REGEX_WHITELIST = ['nextjs-django-auth-example-six.vercel.app']
 # else:
 #     CORS_ORIGIN_ALLOW_ALL = True
 
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
