@@ -1,0 +1,2585 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ATC Capital Partners - Manifest</title>
+
+    <!-- Custom fonts for this template-->
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"
+        type="text/css">
+
+
+    <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css"
+        integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
+
+
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+
+    <style>
+
+::placeholder {
+  color: blue;
+  font-size: 1em;
+  padding-left:5px
+}
+
+        .col-xl-3 {
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+
+        .select2-selection {
+            width: 100% !important;
+        }
+
+        .chart-area {
+            height: 300px
+        }
+
+
+
+        .card-body {
+            padding: 0.3rem;
+            padding-top: 0rem;
+            padding-right: 0rem;
+            margin: 0.1em
+        }
+
+        .topbar {
+            height: 3.475rem
+        }
+
+        td {
+            word-wrap: break-word;
+            font-size: 0.8rem;
+            overflow: hidden;
+            max-height: 50px
+        }
+
+        th {
+            word-wrap: break-word;
+            font-size: 0.75rem;
+        }
+
+
+        .neg-margin-header {
+            margin-bottom: -2.3em;
+        }
+
+        #articles {
+            table-layout: fixed;
+            width: 100% !important;
+        }
+
+        #articles td,
+        #articles th {
+            width: auto !important;
+            white-space: normal;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        #dev-data-chart {
+            margin: auto;
+
+        }
+
+        body {
+            font-size: 0.7rem;
+            font-family: Salesforce Sans, -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica, helvetica neue, ubuntu, roboto, noto, segoe ui, arial, sans-serif
+        }
+
+
+        .border-top-primary {
+            border-top: 0.25rem solid #333333 !important;
+        }
+
+        .border-left-secondary {
+            border-left: 0.25rem solid #858796 !important;
+        }
+
+        .border-top-secondary {
+            border-top: 0.25rem solid #858796 !important;
+        }
+
+        .border-left-success {
+            border-left: 0.25rem solid #1cc88a !important;
+        }
+
+        .border-top-success {
+            border-top: 0.25rem solid #1cc88a !important;
+        }
+
+        .border-left-info {
+            border-left: 0.25rem solid #36b9cc !important;
+        }
+
+        .border-top-info {
+            border-top: 0.25rem solid #36b9cc !important;
+        }
+
+        .border-left-warning {
+            border-left: 0.25rem solid #f6c23e !important;
+        }
+
+        .border-top-warning {
+            border-top: 0.25rem solid #f6c23e !important;
+        }
+
+        .border-left-danger {
+            border-left: 0.25rem solid #e74a3b !important;
+        }
+
+        .border-top-danger {
+            border-top: 0.25rem solid #e74a3b !important;
+        }
+
+        .border-left-light {
+            border-left: 0.25rem solid #f8f9fc !important;
+        }
+
+        .border-top-light {
+            border-top: 0.25rem solid #f8f9fc !important;
+        }
+
+        .border-left-dark {
+            border-left: 0.25rem solid #5a5c69 !important;
+        }
+
+        .border-top-dark {
+            border-top: 0.25rem solid #5a5c69 !important;
+        }
+
+        .bg-gradient-gray {
+            background-color: #8A8A8A;
+            background-image: linear-gradient(180deg, #908386 10%, #8A8A8A 100%);
+            background-size: cover;
+        }
+
+        .table th {
+            padding: .5rem;
+            vertical-align: top;
+            border-top: 1px solid #e3e6f0;
+        }
+
+        .sidebar.toggled {
+            overflow: visible;
+            width: 8rem !important;
+        }
+
+        td {
+            word-break: break-word;
+            vertical-align: top;
+            overflow-x: hidden;
+        }
+
+        #comment_table, #job_table, #author_table {
+            table-layout: fixed;
+            overflow-x: hidden;
+        }
+
+        #data_wrapper.dataTables_wrapper {
+            overflow-x: hidden;
+            background-color: #F1F1F1 !important;
+        }
+
+        #data_wrapper .fg-toolbar.ui-toolbar.ui-widget-header.ui-helper-clearfix.ui-corner-bl.ui-corner-br {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+
+        div.dataTables_wrapper {
+            overflow-x: hidden;
+        }
+
+        .dataTables_scrollBody {
+            overflow-x: hidden !important;
+        }
+
+        .row {
+            margin-bottom: 1em
+        }
+
+        .big-row {
+            height: 72.5vh;
+            margin-bottom: 1.5em
+        }
+
+
+        .text-black-50 {
+            color: rgba(0, 0, 0, 0.5) !important;
+        }
+
+        .mini-card {
+            padding: 0.1rem 1rem !important;
+            margin: 0px
+        }
+
+        .mini-row {
+            margin-bottom: 0.1rem !important
+        }
+
+
+        .text-primary {
+            color: #333333 !important
+        }
+
+        .text-secondary {
+            color: #333333 !important
+        }
+
+
+        .border-left-primary {
+            border-left: .25rem solid #333333 !important
+        }
+
+        .border-all-primary {
+            border: .15rem solid #333333 !important
+        }
+
+        .border-all-primary-thick {
+            border: .25rem solid #333333 !important
+        }
+
+        .border-right-primary {
+            border-right: .25rem solid #333333 !important
+        }
+
+        #wrapper #content-wrapper
+        {
+            background-color: #858796
+        }
+
+        a.bg-primary:hover,
+        a.bg-primary:focus,
+        button.bg-primary:hover,
+        button.bg-primary:focus {
+            background-color: #2653d4 !important;
+        }
+
+        .bg-secondary {
+            background-color: #858796 !important;
+        }
+
+
+        .bg-primary {
+            background-color: #333333 !important
+        }
+
+
+        a.bg-secondary:hover,
+        a.bg-secondary:focus,
+        button.bg-secondary:hover,
+        button.bg-secondary:focus {
+            background-color: #6b6d7d !important;
+        }
+
+        .bg-success {
+            background-color: #1cc88a !important;
+        }
+
+        a.bg-success:hover,
+        a.bg-success:focus,
+        button.bg-success:hover,
+        button.bg-success:focus {
+            background-color: #169b6b !important;
+        }
+
+        .bg-info {
+            background-color: #36b9cc !important;
+        }
+
+        a.bg-info:hover,
+        a.bg-info:focus,
+        button.bg-info:hover,
+        button.bg-info:focus {
+            background-color: #2a96a5 !important;
+        }
+
+        .bg-warning {
+            background-color: #f6c23e !important;
+        }
+
+        a.bg-warning:hover,
+        a.bg-warning:focus,
+        button.bg-warning:hover,
+        button.bg-warning:focus {
+            background-color: #f4b30d !important;
+        }
+
+        .bg-danger {
+            background-color: #e74a3b !important;
+        }
+
+        a.bg-danger:hover,
+        a.bg-danger:focus,
+        button.bg-danger:hover,
+        button.bg-danger:focus {
+            background-color: #d52a1a !important;
+        }
+
+        .bg-light {
+            background-color: #f8f9fc !important;
+        }
+
+        a.bg-light:hover,
+        a.bg-light:focus,
+        button.bg-light:hover,
+        button.bg-light:focus {
+            background-color: #d4daed !important;
+        }
+
+        .bg-dark {
+            background-color: #5a5c69 !important;
+        }
+
+        a.bg-dark:hover,
+        a.bg-dark:focus,
+        button.bg-dark:hover,
+        button.bg-dark:focus {
+            background-color: #42444e !important;
+        }
+
+        .border-bottom-primary {
+            border-bottom: 0.25rem solid #333333 !important;
+        }
+
+        .border-left-secondary {
+            border-left: 0.25rem solid #333333 !important;
+        }
+
+        .border-bottom-secondary {
+            border-bottom: 0.25rem solid #333333 !important;
+        }
+
+        .border-left-success {
+            border-left: 0.25rem solid #1cc88a !important;
+        }
+
+        .border-bottom-success {
+            border-bottom: 0.25rem solid #1cc88a !important;
+        }
+
+        .border-left-info {
+            border-left: 0.25rem solid #36b9cc !important;
+        }
+
+        .border-bottom-info {
+            border-bottom: 0.25rem solid #36b9cc !important;
+        }
+
+        .border-left-warning {
+            border-left: 0.25rem solid #f6c23e !important;
+        }
+
+        .border-bottom-warning {
+            border-bottom: 0.25rem solid #f6c23e !important;
+        }
+
+        .border-left-danger {
+            border-left: 0.25rem solid #e74a3b !important;
+        }
+
+        .border-bottom-danger {
+            border-bottom: 0.25rem solid #e74a3b !important;
+        }
+
+        .border-left-light {
+            border-left: 0.25rem solid #f8f9fc !important;
+        }
+
+        .border-bottom-light {
+            border-bottom: 0.25rem solid #f8f9fc !important;
+        }
+
+        .border-left-dark {
+            border-left: 0.25rem solid #5a5c69 !important;
+        }
+
+        .border-bottom-dark {
+            border-bottom: 0.25rem solid #5a5c69 !important;
+        }
+
+        a.bg-primary:hover,
+        a.bg-primary:focus,
+        button.bg-primary:hover,
+        button.bg-primary:focus {
+            background-color: #2653d4 !important;
+        }
+
+        .bg-secondary {
+            background-color: #858796 !important;
+        }
+
+        a.bg-secondary:hover,
+        a.bg-secondary:focus,
+        button.bg-secondary:hover,
+        button.bg-secondary:focus {
+            background-color: #6b6d7d !important;
+        }
+
+        .bg-success {
+            background-color: #1cc88a !important;
+        }
+
+        a.bg-success:hover,
+        a.bg-success:focus,
+        button.bg-success:hover,
+        button.bg-success:focus {
+            background-color: #169b6b !important;
+        }
+
+        .bg-info {
+            background-color: #36b9cc !important;
+        }
+
+        a.bg-info:hover,
+        a.bg-info:focus,
+        button.bg-info:hover,
+        button.bg-info:focus {
+            background-color: #2a96a5 !important;
+        }
+
+        .bg-warning {
+            background-color: #f6c23e !important;
+        }
+
+        a.bg-warning:hover,
+        a.bg-warning:focus,
+        button.bg-warning:hover,
+        button.bg-warning:focus {
+            background-color: #f4b30d !important;
+        }
+
+        .bg-danger {
+            background-color: #e74a3b !important;
+        }
+
+        a.bg-danger:hover,
+        a.bg-danger:focus,
+        button.bg-danger:hover,
+        button.bg-danger:focus {
+            background-color: #d52a1a !important;
+        }
+
+        .bg-light {
+            background-color: #f8f9fc !important;
+        }
+
+        a.bg-light:hover,
+        a.bg-light:focus,
+        button.bg-light:hover,
+        button.bg-light:focus {
+            background-color: #d4daed !important;
+        }
+
+        .bg-dark {
+            background-color: #5a5c69 !important;
+        }
+
+        a.bg-dark:hover,
+        a.bg-dark:focus,
+        button.bg-dark:hover,
+        button.bg-dark:focus {
+            background-color: #42444e !important;
+        }
+
+         !important;
+        }
+
+        a.bg-primary:hover,
+        a.bg-primary:focus,
+        button.bg-primary:hover,
+        button.bg-primary:focus {
+            background-color: #2653d4 !important;
+        }
+
+        .bg-secondary {
+            background-color: #858796 !important;
+        }
+
+        a.bg-secondary:hover,
+        a.bg-secondary:focus,
+        button.bg-secondary:hover,
+        button.bg-secondary:focus {
+            background-color: #6b6d7d !important;
+        }
+
+        .bg-success {
+            background-color: #1cc88a !important;
+        }
+
+        a.bg-success:hover,
+        a.bg-success:focus,
+        button.bg-success:hover,
+        button.bg-success:focus {
+            background-color: #169b6b !important;
+        }
+
+        .bg-info {
+            background-color: #36b9cc !important;
+        }
+
+        a.bg-info:hover,
+        a.bg-info:focus,
+        button.bg-info:hover,
+        button.bg-info:focus {
+            background-color: #2a96a5 !important;
+        }
+
+        .bg-warning {
+            background-color: #f6c23e !important;
+        }
+
+        a.bg-warning:hover,
+        a.bg-warning:focus,
+        button.bg-warning:hover,
+        button.bg-warning:focus {
+            background-color: #f4b30d !important;
+        }
+
+        .bg-danger {
+            background-color: #e74a3b !important;
+        }
+
+        a.bg-danger:hover,
+        a.bg-danger:focus,
+        button.bg-danger:hover,
+        button.bg-danger:focus {
+            background-color: #d52a1a !important;
+        }
+
+        .bg-light {
+            background-color: #f8f9fc !important;
+        }
+
+        a.bg-light:hover,
+        a.bg-light:focus,
+        button.bg-light:hover,
+        button.bg-light:focus {
+            background-color: #d4daed !important;
+        }
+
+        .bg-dark {
+            background-color: #5a5c69 !important;
+        }
+
+        a.bg-dark:hover,
+        a.bg-dark:focus,
+        button.bg-dark:hover,
+        button.bg-dark:focus {
+            background-color: #42444e !important;
+        }
+
+        .container,
+        .container-fluid,
+        .container-lg,
+        .container-md,
+        .container-sm,
+        .container-xl {
+            padding-left: 1rem;
+            padding-right: 1.5em;
+        }
+
+
+        .card-header {
+            padding: .75rem 1rem;
+            border-bottom: 0px
+        }
+
+        .mini-header {
+            padding: .75rem 1rem;
+            border-bottom: 0px;
+            background-color: #42444e !important;
+            color: lightskyblue
+        }
+
+
+
+        .source_filter_holder {
+            max-height: 20px;
+            width: 100%;
+            padding-right: 0px
+        }
+
+        label {
+
+            margin-right: 10px;
+            margin-bottom: 0px;
+            color: blue !important;
+            font-weight: bold;
+
+        }
+
+
+        .filter_rail label {
+            width: 100%;
+            margin-right: 10px;
+            margin-bottom: 3px;
+            font-size: 12px;
+          
+            color: #555555 !important;
+            clear: both
+        }
+
+        .filter_rail {
+            padding:7px;
+            height: 50px;
+        }
+
+        .filter_rail form {
+            margin-bottom: 10px
+        }
+
+
+
+
+        .source_select_column {
+            padding-right: 0px;
+            padding-top: 1px !important;
+            padding-bottom: 1px !important;
+        }
+
+
+        .dataTables_wrapper label {
+            float: right;
+            margin-right: 1em
+        }
+
+
+
+
+        .select2 {
+            margin-top: 0;
+            width: 100% !important
+        }
+
+        #comment_table td {
+            overflow-wrap: break-word;
+        }
+
+        #job_table td {
+            overflow-wrap: break-word;
+        }
+
+        #author_table td {
+            overflow-wrap: break-word;
+        }
+
+        .select2-selection__rendered {
+            line-height: 18px !important;
+        }
+
+        .select2-container .select2-selection--single {
+            height: 20px !important;
+        }
+
+        .select2-selection__arrow {
+            height: 19px !important;
+        }
+
+
+
+
+        .select2-selection__choice {
+            margin-top: 0px !important;
+        }
+
+        .col,
+        .col-1,
+        .col-10,
+        .col-11,
+        .col-12,
+        .col-2,
+        .col-3,
+        .col-4,
+        .col-5,
+        .col-6,
+        .col-7,
+        .col-8,
+        .col-9,
+        .col-auto,
+        .col-lg,
+        .col-lg-1,
+        .col-lg-10,
+        .col-lg-11,
+        .col-lg-12,
+        .col-lg-2,
+        .col-lg-3,
+        .col-lg-4,
+        .col-lg-5,
+        .col-lg-6,
+        .col-lg-7,
+        .col-lg-8,
+        .col-lg-9,
+        .col-lg-auto,
+        .col-md,
+        .col-md-1,
+        .col-md-10,
+        .col-md-11,
+        .col-md-12,
+        .col-md-2,
+        .col-md-3,
+        .col-md-4,
+        .col-md-5,
+        .col-md-6,
+        .col-md-7,
+        .col-md-8,
+        .col-md-9,
+        .col-md-auto,
+        .col-sm,
+        .col-sm-1,
+        .col-sm-10,
+        .col-sm-11,
+        .col-sm-12,
+        .col-sm-2,
+        .col-sm-3,
+        .col-sm-4,
+        .col-sm-5,
+        .col-sm-6,
+        .col-sm-7,
+        .col-sm-8,
+        .col-sm-9,
+        .col-sm-auto,
+        .col-xl,
+        .col-xl-1,
+        .col-xl-10,
+        .col-xl-11,
+        .col-xl-12,
+        .col-xl-2,
+        .col-xl-3,
+        .col-xl-4,
+        .col-xl-5,
+        .col-xl-6,
+        .col-xl-7,
+        .col-xl-8,
+        .col-xl-9,
+        .col-xl-auto {
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+        }
+
+        div.dataTables_wrapper div.dataTables_paginate {
+            margin: 10px;
+        }
+
+
+        img {
+            /* width:100%; */
+            max-width: 600px !important;
+        }
+
+
+        table.dataTable>thead>tr>th:not(.sorting_disabled),
+        table.dataTable>thead>tr>td:not(.sorting_disabled) {
+            padding-right: 0px;
+        }
+
+        .mini-heading {
+            font-size: 14px;
+            padding-left: 0.5em
+        }
+
+        #id_search_form {
+            background-color: white;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            cursor: text;
+            min-height: 32px;
+            width: 100% !important
+        }
+
+        #id_start_date {
+            max-width: 100%;
+            background-color: white;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            cursor: text;
+            min-height: 32px;
+
+
+        }
+
+        #id_end_date {
+            max-width: 100%;
+            background-color: white;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            cursor: text;
+            min-height: 32px;
+
+        }
+
+        #dev_data_table thead th {
+            white-space: nowrap;
+        }
+
+
+        /* @media (min-width: 900px) {
+        .container, .container-sm, .container-md, .container-lg {
+        max-width: 860px;
+        }
+        } */
+
+        .dt-buttons {
+            float: right
+        }
+
+        :root {
+            --breakpoint-sm: 536px;
+            --breakpoint-md: 668px;
+            --breakpoint-lg: 792px;
+            --breakpoint-xl: 1200px;
+
+        }
+
+
+        .tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 12px;
+  transition: 0.3s;
+  font-size: .7rem
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+
+.tabcontent_feed {
+  
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+
+.tabcontent_devgraph {
+  
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+
+.tabcontent_discussiongraph {
+  
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+
+
+table{
+  margin: 0 auto;
+  width: 100%;
+  clear: both;
+  border-collapse: collapse;
+  table-layout: fixed;
+  word-wrap:break-word; 
+}
+
+
+</style>
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div>
+
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                <div class="container-fluid" data-select2-id="12">
+         
+                    <div class="filter_rail" style="clear:both">
+                                    
+                        <div style="float:left;width:20%;padding:5px">
+
+                        <form id="business_function_filter_form" style="margin-left: -20px;">
+
+                            <!-- {% csrf_token %} -->
+                            {{ form_set.business_function_filter_form }}
+
+                        </form>
+                        
+                        </div>
+                        
+                        <div style="float:left;width:20%;padding:5px;margin-left:10px">
+                        <form id="product_ose_filter_form">
+
+                            <!-- {% csrf_token %} -->
+                            {{ form_set.product_ose_filter_form }}
+                        </form>
+                        </div>
+                        <div style="float:left;width:20%;padding:5px;margin-left:10px">
+                        <form id="date_form">
+    
+                            <!-- {% csrf_token %} -->
+                            
+                                <div style='width: 46%; float:left'>
+                                    
+                                    {{ form_set.date_form.start_date }}
+                                </div>
+
+                                <div style='width: 46%; float:right'>
+                                
+                                {{ form_set.date_form.end_date }}
+                                </div>
+                            
+                        </form>
+                        </div>
+                               </div>
+                    <div class="row" style="height:580px">
+                        <div class="col-xl-3 col-lg-3">
+                            <div class="card shadow border-all-primary mt-1" style = 'height:100%'>  
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">Context</h6>
+                                </div>
+                                
+                                <span class="mini-header">Related Products</span>
+                                <div class="card-body" id="related_product_holder">
+                                    <table id="related_product_table" class="table row-border wrap">
+            
+                                        <thead>
+                                            <tr>
+                                                <th data-data="id">id</th>
+                                                <th data-data="name">name</th>
+                                                <th data-data="business_function">function</th>
+
+                                                <!-- <th data-data="link">Link</th> -->
+                                            </tr>
+                                        </thead>
+            
+                                    </table>
+    
+    
+                                    </div>
+                            
+                            </div>
+                        
+                        
+                        
+                        </div>
+                        <div class="col-xl-9 col-lg-9">
+
+                            <div class="card shadow border-all-primary mt-1" style = 'height:100%'>  
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">Feed</h6>
+                                </div>
+                         
+
+                                <div class="tab">
+                                    <div style="clear:both">
+                                        <button class="tablinks_feed active" onclick="openFeed(event, 'discussions')">Discussions</button>
+                                        <button class="tablinks_feed" onclick="openFeed(event, 'jobs')">Jobs</button>
+                                        <button class="tablinks_feed" onclick="openFeed(event, 'network')">Influential Developers</button>
+                                    </div>
+
+                            
+                                </div>
+                                  
+
+                                <div id="discussions" class="tabcontent_feed active">
+            
+                                <div class="card-body" id="comment_table_holder">
+                                <table id="comment_table" class="table row-border wrap">
+        
+                                    <thead>
+                                        <tr>
+                                            <th data-data="id">id</th>
+                                            <th data-data="posted_date">Date</th>
+                                            <th data-data="content">Content</th>
+                                            <th data-data="source">Source</th>
+                                            <th data-data="username">Author</th>
+                                            <th data-data="products__product">Product Tags</th>
+                                            <th data-data="karma">Code Clout</th>
+                                            <!-- <th data-data="link">Link</th> -->
+                                        </tr>
+                                    </thead>
+        
+                                </table>
+
+
+                                </div>
+
+                            </div>
+
+
+                            <div id="jobs" class="tabcontent_feed" style="display:none">
+                            <div class="card-header">
+                                <h6 class="m-0 font-weight-bold text-primary">Raw Jobs</h6>
+                            </div>
+                            <div class="card-body" id="job_table_holder">
+                            <table id="job_table" class="table table-striped table-bordered wrap">
+    
+                                <thead>
+                                    <tr>
+                                        <!-- <th data-data="id">id</th> -->
+                                        <th data-data="created">date</th>
+                                        <!-- <th data-data="title">title</th> -->
+                                        <th data-data="company_name">hiring co.</th>
+                                        <th data-data="description">description</th>
+                                        
+                                        <th data-data="product">product</th>
+                                        
+                                        <!-- <th data-data="username">user</th>
+                                        <th data-data="companies__company">tags</th> -->
+                                        <!-- <th data-data="consolidatedsearchparam">Terms</th>
+                                        <th data-data="link">Link</th> -->
+                                    </tr>
+                                </thead>
+    
+                            </table>
+
+
+                            </div>
+                            </div>
+
+
+                            <div id="network" class="tabcontent_feed" style="display:none">
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">Influential Developers</h6>
+                                </div>
+                                <div class="card-body" id="author_table_holder">
+                                <table id="author_table" class="table table-striped table-bordered wrap">
+        
+                                    <thead>
+                                        <tr>
+                                            <th data-data="id">id</th>
+                                            <th data-data="username">Username</th>
+                                            <!-- <th data-data="title">Title</th> -->
+                                            <th data-data="product_name">Tagged Product</th>
+                                            <th data-data="company_name">Tagged Company</th>
+                                            <th data-data="count">Post Count</th>
+                                        </tr>
+                                    </thead>
+        
+                                </table>
+    
+    
+                                </div>
+                              
+                                </div>
+
+
+
+                             
+                       
+                        </div>
+                        
+                            
+                        </div>
+                        
+                        </div>
+                        <div class="row" style="height:500px">
+
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="card shadow border-all-primary mt-1">
+                                
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">Metrics</h6>
+                                </div>
+                         
+                           
+                            <div class="tab">
+                                
+                                <div style="clear:both">
+                                    <button class="tablinks_graphs active" onclick="openGraphCategory(event, 'developer_adoption_graphs')">Developer Adoption</button>
+                                    <button class="tablinks_graphs" onclick="openGraphCategory(event, 'discussions_graphs')">Discussion Velocity</button>
+                                    <button class="tablinks_graphs" onclick="openGraphCategory(event, 'hiring_graphs')">Hiring Velocity</button>
+                                </div>
+
+                            </div>
+                                    
+
+                          
+
+
+
+                          
+                                    <div id="developer_adoption_graphs" class="tabcontent_graphs active">
+                               
+                                        <div class="tab">
+                                            <button class="tablinks_devgraph active" onclick="openDevgraphs(event, 'animated_dev_bubbles')">Velocity (animated)</button>
+                                            <button class="tablinks_devgraph" onclick="openDevgraphs(event, 'static_dev_bubbles')">Velocity (static)</button>
+                                            
+                                            <button class="tablinks_devgraph" onclick="openDevgraphs(event, 'dev_plot_figure_simple_time_series_holder')">Simple Count</button>
+
+                                            <button class="tablinks_devgraph" onclick="openDevgraphs(event, 'static_dev_time_to')">Time To X Developers</button>    
+                                        </div>
+                                        
+
+                                        <div id="animated_dev_bubbles" class="tabcontent_devgraph active">
+                                
+                                            
+                                            <div style="width:100%;" id="ose_bubbles_dev">  
+                                            
+                                            </div>
+                                            
+                                        </div>
+                                    
+                                
+                                        <div id="static_dev_bubbles" class="tabcontent_devgraph" style="display:none">
+            
+                                        
+                                                <div style="width:100%;"  id="ose_lines_dev">
+                                        
+                                                </div>
+                        
+                                    
+                                        
+                                        </div>
+                                        
+
+                                        
+                                        
+                                        <div id="dev_plot_figure_simple_time_series_holder" class="tabcontent_devgraph" style="display:none">
+
+                                        
+                                
+                                            <div style="width:100%;"  id="dev_plot_figure_simple_time_series">
+                                        
+                                        
+                                                    </div>
+                            
+                                        
+                                            
+                                                
+                                        </div>
+                            
+
+                                        
+                                        <div id="static_dev_time_to" class="tabcontent_devgraph" style="display:none">
+
+                                        
+                                
+                                            <div style="width:100%;"  id="developer_time_to_div">
+                                        
+                                        
+                                                    </div>
+                            
+                                        
+                                            
+                                                
+                                        </div>
+                            
+                                    </div>
+
+
+                                    <div id="discussions_graphs" class="tabcontent_graphs" style="display:none">
+
+                                    <div class="tab">
+                                        <button class="tablinks_discussiongraph active" onclick="openDiscussiongraphs(event, 'animated_discussion_bubbles')">Velocity (animated)</button>
+                                        <button class="tablinks_discussiongraph" onclick="openDiscussiongraphs(event, 'static_discussion_bubbles')">Velocity (static)</button>
+                                    </div>
+                                  
+
+                                        <div id="animated_discussion_bubbles" class="tabcontent_discussiongraph active">
+                            
+                            
+                                        <div style="width:100%;" id="ose_bubbles_discussion">  
+                            
+                                        </div>
+                            
+                                        </div>
+                               
+                          
+                                        <div id="static_discussion_bubbles" class="tabcontent_discussiongraph" style="display:none">
+    
+                               
+                                
+                                        <div style="width:100%;"  id="ose_lines_discussion">
+                                      
+                                        </div>
+                   
+                             
+                                 
+                                        </div>
+
+
+                                    </div>
+
+                                    
+                                    <div id="hiring_graphs" class="tabcontent_graphs" style="display:none">
+
+                                        <div class="tab">
+                                        <button class="tablinks_hiring_companygraph active" onclick="openHiringcompanygraphs(event, 'animated_hiring_company_bubbles')">Velocity (animated)</button>
+                                        <button class="tablinks_hiring_companygraph" onclick="openHiringcompanygraphs(event, 'static_hiring_company_bubbles')">Velocity (static)</button>
+                                        </div>
+                                  
+
+                                        <div id="animated_hiring_company_bubbles" class="tabcontent_hiring_companygraph active">
+                            
+                                    
+                                        <div style="width:100%;" id="ose_bubbles_hiring_company">  
+                                    
+                                        </div>
+                                    
+                                        </div>
+                                
+                          
+                                        <div id="static_hiring_company_bubbles" class="tabcontent_hiring_companygraph" style="display:none">
+    
+                                  
+                                
+                                        <div style="width:100%;"  id="ose_lines_hiring_company">
+                                  
+                                        </div>
+                   
+                             
+                                  
+                                        </div>
+                                    </div>
+
+
+                            </div>
+                            
+                            
+
+
+                        </div>
+
+                        <div class="col-xl-3 col-lg-3">
+                            <div class="card shadow border-all-primary mt-1" style = 'height:100%'>  
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">Developer Share</h6>
+                                </div>
+                                
+                                
+                                <div class="card-body" id="dev_share_holder">
+                                    <table id="dev_share_table" class="table row-border wrap">
+            
+                                        <thead>
+                                            <tr>
+                                                <th data-data="id">id</th>
+                                                <th data-data="name">name</th>
+                                                <th data-data="business_function">function</th>
+                                                <th data-data="share">share</th>
+                                                
+
+                                                <!-- <th data-data="link">Link</th> -->
+                                            </tr>
+                                        </thead>
+            
+                                    </table>
+    
+    
+                                    </div>
+                            
+                            </div>
+                        
+                        
+                        
+                        </div>
+
+
+                        <div class="col-xl-3 col-lg-3">
+                            <div class="card shadow border-all-primary mt-1" style = 'height:100%'>  
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">Developer Share Graph</h6>
+                                </div>
+                                
+                                <div class="card-body" id="dev_share_graph_holder">
+                        
+                                
+                                    <div style="width:100%;"  id="dev_share_graph">
+                                        
+                                        
+                                    </div>
+
+
+                                </div>
+
+                            
+                            </div>
+                        
+                        
+                        
+                        </div>
+                    </div>
+
+                        <!-- /.container-fluid -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Main Content -->
+    </div>
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; ATC Capital Partners</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->    
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+
+
+
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js"
+        integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+
+    <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+
+    <script src="{% static 'vendor/datatables/RowGroup-1.1.2/js/dataTables.rowGroup.min.js' %}"></script>
+
+    <script src="{% static 'vendor/datatables/datatables.mark.js-master/src/datatables.mark.js' %}"></script>
+
+    <script src="{% static 'vendor/datatables/datatables-mark.js' %}"></script>
+
+    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+
+
+
+
+
+
+
+
+    <!-- JQuery-->
+
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-colorschemes"></script>
+
+    <!-- Page level custom scripts -->
+
+
+    <script>
+
+
+        $(function () {
+
+            //-----------
+            //DATA TABLES
+            //-----------
+
+            var ticker_string = "{{ ticker_string }}"
+
+
+            // Date renderer for DataTables from cdn.datatables.net/plug-ins/1.10.21/dataRender/datetime.js
+            $.fn.dataTable.render.moment = function (from, to, locale) {
+                // Argument shifting
+                if (arguments.length === 1) {
+                    locale = 'en';
+                    to = from;
+                    from = 'YYYY-MM-DD';
+                }
+                else if (arguments.length === 2) {
+                    locale = 'en';
+                }
+
+                return function (d, type, row) {
+                    if (!d) {
+                        return type === 'sort' || type === 'type' ? 0 : d;
+                    }
+
+                    var m = window.moment(d, from, locale, true);
+
+                    // Order and type get a number value from Moment, everything else
+                    // sees the rendered value
+                    return m.format(type === 'sort' || type === 'type' ? 'x' : to);
+                };
+            };
+
+
+
+
+
+
+            //#comment_table table DataTables definition 
+            var comment_table = $('#comment_table').DataTable({
+                "mark": true,
+                "orderCellsTop": true,
+                "fixedHeader": true,
+                "serverSide": true,
+                "dom": 'Bfrtip',
+                "buttons": [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                "ajax": {
+                    "url": "/comment_table_api/?format=datatables",
+                    "type": "GET",
+
+                    "data": function (d) {
+                        d.form_results = FormResults()
+
+                    }
+
+                },
+
+                "order": [
+                    [1, "desc"]
+                ],
+
+                "scrollY": '325px',
+                "pagingType": "simple",
+                "pageLength": 50,
+
+                "info": false,
+                "responsive": true,
+                columns: [
+                    { data: 'id', "visible": false },
+                    { data: 'posted_date', render: $.fn.dataTable.render.moment('MMM D YYYY'), width: '90px' },
+                    { data: 'content'},
+                    { data: 'source', width: '60px' },
+                    { data: 'username', width: '120px' },
+                    { data: 'products__name', width: '90px' },
+                    
+                    { data: 'karma', width: '80px' }
+                ],
+
+
+
+            });
+
+
+
+
+            //#related_product_table table DataTables definition 
+            var related_product_table = $('#related_product_table').DataTable({
+                "mark": true,
+                "orderCellsTop": true,
+                "fixedHeader": true,
+                "serverSide": true,
+                "dom": 'rtip',
+                // "buttons": [
+                //     'copy', 'csv', 'excel', 'pdf', 'print'
+                // ],
+                "ajax": {
+                    "url": "/related_product_table_api/?format=datatables",
+                    "type": "GET",
+
+                    "data": function (d) {
+                        d.form_results = FormResults()
+
+                    }
+
+                },
+
+                "order": [
+                    [1, "asc"]
+                ],
+
+                "scrollY": "380px",
+                "scrollCollapse": true,
+                "pagingType": "simple",
+                "pageLength": 10,
+
+                "info": false,
+                "responsive": true,
+                columns: [
+                    { data: 'id', "visible": false },
+                    { data: 'name' },
+                    { data: 'business_function__business_function' },
+                    // { data: 'source', width: '60px' },
+                    // { data: 'username', width: '90px' },
+                    // { data: 'products__name', width: '90px' },
+                    
+                    // { data: 'karma', width: '50px' }
+                ],
+
+
+
+            });
+
+
+
+
+
+            //#dev_share_table table DataTables definition 
+            var dev_share_table = $('#dev_share_table').DataTable({
+                "mark": true,
+                "orderCellsTop": true,
+                "fixedHeader": true,
+                "serverSide": true,
+                "dom": 'rtip',
+                // "buttons": [
+                //     'copy', 'csv', 'excel', 'pdf', 'print'
+                // ],
+                "ajax": {
+                    "url": "/dev_share_table_api/?format=datatables",
+                    "type": "GET",
+
+                    "data": function (d) {
+                        
+                        d.form_results = FormResults()
+
+                    }
+
+                },
+
+                "order": [
+                    [1, "asc"]
+                ],
+
+                "scrollY": "300px",
+                "scrollCollapse": true,
+                "pagingType": "simple",
+                "pageLength": 10,
+
+                "info": false,
+                "responsive": true,
+                columns: [
+                    { data: 'id', "visible": false },
+                    { data: 'product_name' },
+                    { data: 'business_function' },
+                    { data: 'share', render: $.fn.dataTable.render.number(',','.','2','','%') },
+
+                    
+                    // { data: 'username', width: '90px' },
+                    // { data: 'products__name', width: '90px' },
+                    
+                    // { data: 'karma', width: '50px' }
+                ],
+
+
+
+            });
+
+
+
+
+
+            //#author_table table DataTables definition 
+            var author_table = $('#author_table').DataTable({
+                "mark": true,
+                "orderCellsTop": true,
+                "fixedHeader": true,
+                "serverSide": true,
+                "dom": 'Bfrtip',
+                "buttons": [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                "ajax": {
+                    "url": "/author_table_api/?format=datatables",
+                    "type": "GET",
+
+                    "data": function (d) {
+                        d.form_results = FormResults()
+
+                    }
+
+                },
+
+                "order": [
+                    [1, "desc"]
+                ],
+                "scrollY": '325px',
+                "pagingType": "simple",
+                "pageLength": 20,
+
+                "info": false,
+                "responsive": true,
+
+    
+
+                columns: [
+                    { data: 'id', "visible": false },
+                    // {
+                    //     data: 'username',
+
+                    //     "render": function (data, type, row) {
+                    //         return "<a target= '_blank' href='" + row.profile_link + "'>" + data + "</a>";
+                    //     },
+                    // },
+                    // { data: 'title' },
+                    { data: 'username', width: '220px' },
+                    { data: 'product_name', width: '220px' },
+                    { data: 'company_name', width: '120px'},
+                    { data: 'count' }
+                ],
+
+
+
+            });
+
+
+
+
+            //#dev_data_table table DataTables definition 
+            var dev_data_table = $('#dev_data_table').DataTable({
+                "mark": true,
+                "orderCellsTop": true,
+                "fixedHeader": true,
+                "serverSide": true,
+
+                "ajax": {
+                    "url": "/dev_data_table_api/?format=datatables",
+                    "type": "GET",
+
+                    "data": function (d) {
+                        d.form_results = FormResults()
+
+                    }
+
+                },
+
+                "order": [
+                    [1, "desc"]
+                ],
+
+                "scrollY": '325px',
+                "pageLength": 100,
+                "dom": 'Bfrtip',
+                "buttons": [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                "pagingType": "simple",
+                "info": false,
+                "responsive": true,
+                columns: [
+                    { data: 'tag' },
+                    { data: 'creation_date', render: $.fn.dataTable.render.moment('MMM D YYYY') },
+                    { data: 'tag_master__companies__company' },
+                    { data: 'tag_master__products__name' },
+                    { data: 'total_activity' },
+                    {
+                        data: 'change__chg',
+
+                        "render": function (data, type, row) {
+                            return parseFloat(row.change__chg * 100).toFixed(1) + "%";
+                        },
+                    }
+
+                ],
+
+
+
+
+            });
+
+
+            var company_table = $('#company_table').DataTable({
+                "mark": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": "/company_api/?format=datatables",
+                    "type": "GET",
+
+                    "data": function (d) {
+                        d.form_results = FormResults()
+
+                    }
+
+                },
+
+                "order": [
+                    [0, "desc"]
+                ],
+
+                "scrollY": '325px',
+                "pageLength": 50,
+                "scrollCollapse": true,
+                "scroller": true,
+                "dom": 'Bfrtip',
+                "buttons": [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+
+                "info": false,
+                "responsive": true
+
+            });
+
+
+
+
+            //#job_table table DataTables definition 
+            var job_table = $('#job_table').DataTable({
+                "mark": true,
+                "serverSide": true,
+
+                "ajax": {
+                    "url": "/job_table_api/?format=datatables",
+                    "type": "GET",
+
+
+                    "data": function (d) {
+                        d.form_results = FormResults()
+
+                    }
+                },
+
+                "order": [
+                    [0, "desc"]
+                ],
+
+                "scrollY": '325px',
+                "pageLength": 50,
+                "scrollCollapse": true,
+                "scroller": true,
+                "pagingType": "simple",
+                "dom": 'Bfrtip',
+                "buttons": [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+
+                "info": false,
+                "responsive": true,
+
+                columns: [
+                    { data: 'created', render: $.fn.dataTable.render.moment('MMM D YYYY'), width: '50px' },
+                    { data: 'company_name', width: '80px' },
+                    { data: 'description' },
+                    { data: 'product', width: '80px' },
+                    // { data: 'username', width: '90px' },
+                    // { data: 'companies__company', width: '90px' },
+                    // { data: 'consolidatedsearchparam__term_array', width: '90px' },
+                    // { data: 'link', width: '50px' }
+                ],
+
+                // "columnDefs": {
+                //     "visible": false,
+                //     "targets": [0]
+                // }
+
+            });
+
+          
+     
+
+
+
+
+            //-----------
+            //Charts
+            //-----------
+
+            Chart.defaults.global.defaultFontSize = 9;
+
+
+
+
+            const Colors = ["#55dde0", "#44a1b5", "#3a7587", "#2f4858", "#33658a", "#606f68", "#ab8f4b", "#f6ae2d", "#f48923", "#AA7C46", "#f26419"]
+
+
+
+            //comments summarized by company by month
+            //time-series
+
+
+            function MetricRefresh(search) {
+
+                function plotly_click_event(arg1,data) {
+                        // alert('test')
+                        // console.log("plotly click ose-dev_lines:")
+                        // console.log(JSON.stringify(data, getCircularReplacer()));
+                        // alert("month clicked" + data.points[0].hovertext)
+
+                        //set form value start date and end date to bracket clicked point
+
+                        clicked_date = new Date(data.points[0].hovertext);
+
+                        start_date = clicked_date
+
+                        start_date.setMonth(start_date.getMonth() - 1)
+                        start_date = start_date.toISOString().slice(0, 10);
+
+                        end_date = clicked_date
+
+                        end_date.setMonth(end_date.getMonth() + 1)
+                        end_date = end_date.toISOString().slice(0, 10);
+
+                        $('#id_start_date').val(start_date)
+
+                        $('#id_end_date').val(end_date)
+
+
+                        $("#id_start_date").trigger("change");
+                                        
+                        }
+
+
+                var $OseBubblesDev = $("#ose_bubbles_dev");
+                var $OseLinesDev = $("#ose_lines_dev");
+                
+                
+                var $dev_plot_figure_simple_time_series = $("#dev_plot_figure_simple_time_series");   
+                
+                
+
+                var $OseBubblesDiscussion = $("#ose_bubbles_discussion");
+                var $OseLinesDiscussion = $("#ose_lines_discussion");
+
+
+                var $poster_plot_figure_simple_time_series = $("#poster_plot_figure_simple_time_series");   
+                
+
+
+                var $OseBubblesJobs = $("#ose_bubbles_hiring_company");
+                var $OseLinesJobs = $("#ose_lines_hiring_company");   
+                
+                var $poster_plot_figure_simple_time_series = $("#poster_plot_figure_simple_time_series");                   
+                
+
+                var $developer_time_to_graph = $("#developer_time_to_div");          
+                
+
+
+                console.log("MetricRefresh fired")
+
+                $.ajax({
+                    data: { "form_results": FormResults() },
+                    url: "/developer_time_to_graph",
+
+                    success: function (d) {
+                        // alert(d)
+                        $developer_time_to_graph.html(d)
+                      
+                        
+                        
+                       
+                    }
+                });
+
+
+                $.ajax({
+                    data: { "form_results": FormResults() },
+                    url: "/discussion_graph_refresh",
+
+                    success: function (d) {
+
+                        console.log("discussion refresh");
+
+                        $OseBubblesDiscussion.html(JSON.parse(d)['data'][0])
+
+                        $OseBubblesDiscussion.find(".plotly-graph-div" ).on('plotly_click', function(arg1,data){
+
+                        plotly_click_event(arg1,data)                            
+
+                        });
+
+
+                        $OseLinesDiscussion.html(JSON.parse(d)['data'][1])
+
+
+                        $OseLinesDiscussion.find(".plotly-graph-div" ).on('plotly_click', function(arg1,data){
+
+                        plotly_click_event(arg1,data)                            
+
+                        });
+
+
+                    }
+                });
+
+
+                $.ajax({
+                    
+                    
+                    data: { "form_results": FormResults() },
+                    url: "/jobs_graph_refresh",
+
+                    success: function (d) {
+                        
+                        console.log("jobs refresh");
+   
+                    
+                        $OseBubblesJobs.html(JSON.parse(d)['data'][0])
+
+                        $OseBubblesJobs.find(".plotly-graph-div" ).on('plotly_click', function(arg1,data){
+
+                        plotly_click_event(arg1,data)                            
+
+                        });
+
+                        $OseLinesJobs.html(JSON.parse(d)['data'][1])
+
+                        $OseLinesJobs.find(".plotly-graph-div" ).on('plotly_click', function(arg1,data){
+
+                        plotly_click_event(arg1,data)                            
+
+                        });
+
+                    }
+                });
+
+
+                $.ajax({
+                    data: { "form_results": FormResults() },
+                    url: "/graph_refresh",
+
+                    success: function (d) {
+                        // alert(d)
+                        $OseBubblesDev.html(JSON.parse(d)['data'][0])
+
+                        $OseBubblesDev.find(".plotly-graph-div" ).on('plotly_click', function(arg1,data){
+
+                        plotly_click_event(arg1,data)                            
+
+                        });
+
+                        $OseLinesDev.html(JSON.parse(d)['data'][1])
+
+                        $OseLinesDev.find(".plotly-graph-div" ).on('plotly_click', function(arg1,data){
+
+                            plotly_click_event(arg1,data)                            
+
+                        });
+
+
+                        $dev_plot_figure_simple_time_series.html(JSON.parse(d)['data'][2])
+
+                        $dev_plot_figure_simple_time_series.find(".plotly-graph-div" ).on('plotly_click', function(arg1,data){
+
+                            alert("test");                         
+
+                        });
+
+
+
+                    }
+                });
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+
+                 //get related products
+
+                $.ajax({
+                    data: { "form_results": FormResults() },
+                    url: "/related_product_table_api",
+
+                    success: function (d) {
+                        
+                        related_product_table
+
+                        console.log(d)
+
+
+                    }
+                });
+
+
+
+                //get dev share
+                // var callingState = new Error(); // capture state/stack when ajax is called
+                    $.ajax({
+                    data: { "form_results": FormResults() },
+                    url: "/dev_share_table_api",
+
+                    success: function (d) {
+                        
+                        dev_share_table
+        //                 alert('Caller stack: ' + callingState.stack);
+        // // access stack during "error" callback
+        // alert('Current stack: ' + (new Error()).stack);
+        //                 console.log(d)
+
+
+                    }
+                });
+
+
+
+
+
+
+
+
+                var $DevShareGraph = $("#dev_share_graph");
+
+                $.ajax({
+                    data: { "form_results": FormResults() },
+                    url: "/dev_share_graph",
+
+                    success: function (d) {
+                        // alert(d)
+                        $DevShareGraph.html(JSON.parse(d)['graph'])
+
+                        // $DevShareGraph.find(".plotly-graph-div" ).on('plotly_click', function(arg1,data){
+
+                        // plotly_click_event(arg1,data)                            
+
+                        // });
+
+                      
+                        // $dev_plot_figure_simple_time_series.html(JSON.parse(d)['data'][2])
+
+                        // $dev_plot_figure_simple_time_series.find(".plotly-graph-div" ).on('plotly_click', function(arg1,data){
+
+                        //     alert("test");                         
+
+                        // });
+
+
+
+                    }
+                });
+
+
+
+
+            }
+
+
+
+            MetricRefresh();
+
+
+                 function refresh_tables() {
+                 comment_table
+                            .search('')
+                            .draw();
+
+                        job_table
+                            .search('')
+                            .draw();   
+                            
+                        author_table
+                            .search('')
+                            .draw();   
+
+                            related_product_table
+                            .search('')
+                            .draw();   
+
+                            dev_share_table
+                            .search('')
+                            .draw();   
+
+                        };
+
+
+
+                        function refresh_tables_with_search() {
+             
+
+
+                            comment_table
+                            .search($("#search_form input").val())
+                            .draw();
+
+                        job_table
+                            .search($("#search_form input").val())
+                            .draw();  
+                            
+                        author_table
+                            .search($("#search_form input").val())
+                            .draw();  
+                            $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();    
+                 
+                 
+                        related_product_table
+                            .search($("#search_form input").val())
+                            .draw();  
+                            $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();    
+                 
+                                             
+                        dev_share_table
+                            .search($("#search_form input").val())
+                            .draw();  
+                            $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();    
+                 
+
+                        };
+
+       
+
+
+
+            $("#business_function_filter_form").on('change', function () {
+
+                
+                
+                
+                MetricRefresh();
+
+                if ($("#search_form input").val()) {
+                    refresh_tables_with_search();
+               
+
+                    }
+
+                    else {
+
+                        refresh_tables();
+                        $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+                            
+                    }
+            
+            
+            
+
+            
+                });
+
+
+
+
+            $("#product_ose_filter_form").on('change', function () {
+                MetricRefresh();
+                
+                
+                if ($("#search_form input").val()) {
+                        
+                    refresh_tables_with_search();
+                    }
+
+                    else {
+                        
+                        refresh_tables();
+                            
+                    }
+            });
+
+
+            $("#company_filter_form").on('change', function () {
+
+                    if ($("#search_form input").val()) {
+                        
+                        comment_table
+                            .search($("#search_form input").val())
+                            .draw();
+                            
+                                        
+
+                        job_table
+                            .search($("#search_form input").val())
+                            .draw();
+                            
+                    }
+
+                    else {
+                        comment_table
+                            .search('')
+                            .draw();
+                            
+                                        
+
+                        job_table
+                            .search('')
+                            .draw();
+                    }
+
+                    $('#company_table').DataTable().ajax.reload();
+                    $('#job_table').DataTable().ajax.reload();
+
+                    // CommentAggChart();
+
+                    // DolJobListingAggChart();
+
+                    // DevDataChart();
+
+                    // DoljoblistingCompanyMonthlySumChart();
+
+                    // CommentCompanyMonthlySumChart();
+
+
+
+                    
+
+                });
+                
+
+                $("#id_start_date").on('change', function () {
+
+
+
+                
+                
+                
+                MetricRefresh();
+
+if ($("#search_form input").val()) {
+        
+    refresh_tables_with_search();
+ 
+            
+    }
+
+    else {
+
+        refresh_tables();
+        $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+            
+    }
+
+
+
+
+    
+                });
+
+
+                $("#id_end_date").on('change', function () {
+
+            MetricRefresh();
+
+            if ($("#search_form input").val()) {
+
+                refresh_tables_with_search();
+
+            }
+
+            else {
+
+            refresh_tables();
+            $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+
+            }
+
+
+
+
+
+            });
+
+
+
+
+
+
+
+            $('#id_business_function_filter_form').select2({placeholder: "business function..."});
+
+            $('#id_company_ose_filter_form').select2({placeholder: "company..."});
+
+            $('#id_product_ose_filter_form').select2({placeholder: "product..."});
+
+            // $('#id_start_date').select2({placeholder: "start date..."});
+
+            // $('#id_end_date').select2({placeholder: "end date..."});
+
+
+            $(document).ready(function(){ 
+                $('#id_start_date').attr("placeholder", "start date...");
+                $('#id_end_date').attr("placeholder", "end date...");
+            });
+            
+
+            
+
+            //////
+            //SERIALIZE FORM DATA AND SEND IT BACK TO THE VIEW
+            //////
+
+            function FormResults() {
+                form_items = { 'selected_business_functions': $("#id_business_function_filter_form").serialize(), 'selected_topics': $("#id_topic_filter_form").serialize(), 'selected_companies': $("#company_ose_filter_form").serialize(), 'selected_products': $("#product_ose_filter_form").serialize(), 'selected_sources': $("#id_source_filter_form").serialize(), 'selected_vectors': $("#id_vector_filter_form").serialize(), 'selected_sectors': $("#sector_filter_form").serialize(), 'selected_tech_vs_non_techs': $("#id_tech_vs_non_tech_filter_form").serialize(), 'search_form': $("#id_search_form").val(), 'start_date': $("#id_start_date").val(), 'end_date': $("#id_end_date").val() }
+
+                return form_items
+            }
+
+
+
+
+
+        });
+
+
+    
+
+        function openFeed(evt, Product) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent_feed");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks_feed");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(Product).style.display = "block";
+        evt.currentTarget.className += " active";
+
+        $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+            
+
+        }
+
+
+
+
+        function openGraphCategory(evt, Product) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent_graphs");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks_graphs");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(Product).style.display = "block";
+        evt.currentTarget.className += " active";
+
+        $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+            
+
+        }
+
+
+
+
+        function openDevgraphs(evt, Product) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent_devgraph");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks_devgraph");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(Product).style.display = "block";
+        evt.currentTarget.className += " active";
+
+        $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+            
+
+        }
+
+
+        function openDiscussiongraphs(evt, Product) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent_discussiongraph");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks_discussiongraph");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(Product).style.display = "block";
+        evt.currentTarget.className += " active";
+
+        $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+            
+
+        }
+
+
+
+        function openHiringcompanygraphs(evt, Product) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent_hiring_companygraph");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks_hiring_companygraph");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(Product).style.display = "block";
+        evt.currentTarget.className += " active";
+
+        $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+            
+
+        }
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        //add click elements
+        const getCircularReplacer = () => {
+    const seen = new WeakSet();
+    return (key, value) => {
+    if (typeof value === "object" && value !== null) {
+        if (seen.has(value)) {
+            return;
+        }
+        seen.add(value);
+    }
+    return value;
+    };
+};
+
+
+
+
+$(function () { 
+
+
+   
+
+
+            //-----------
+            //DATE PICKER
+            //-----------
+
+          $("#id_start_date").datepicker({
+            format:'yyyy-mm-dd',
+          });
+
+          $("#id_end_date").datepicker({
+            format:'yyyy-mm-dd',
+          });
+
+       
+       
+    
+
+       
+        });
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>

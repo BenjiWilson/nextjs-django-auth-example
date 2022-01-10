@@ -1,0 +1,449 @@
+
+{% load static %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+
+<script src="{% static 'plotly.js' %}"></script>
+
+
+
+<script>
+    
+    var ticker = "{{ object.ticker }}"
+
+    var stockInfo = null
+
+    // alert("{{ object.ticker }}")
+    // console.log("getTickerHeaderData ticker:")
+    
+    $.ajax({
+      url:
+        "https://cloud.iexapis.com/stable/stock/" +
+        ticker +
+        "/quote?token=pk_12d2b570c2ea4bb58a2bebe25f95c9b7",
+
+      success: function (stockInfo) {
+        
+        
+        console.log(stockInfo)
+        ticker_header_data = ticker +
+        ": $" +
+        stockInfo["latestPrice"].toString();
+    
+      if (stockInfo["changePercent"] > 0) {
+        ticker_header_data +=
+          "<span style='color:#50C878'> +" +
+          (stockInfo["changePercent"] * 100).toFixed(2).toString() +
+          " %</div>";
+      } else if (stockInfo["changePercent"] < 0) {
+        ticker_header_data +=
+          "<span style='color:#FF5252'> " +
+          (stockInfo["changePercent"] * 100).toFixed(2).toString() +
+          " %</div>";
+      } else {
+        ticker_header_data +=
+          "<span style='color:#aeb8ba'>" +
+          (stockInfo["changePercent"] * 100).toFixed(2).toString() +
+          " %</div>";
+      }
+    
+            $("#dewey_site__dewey_ticker_header").html(ticker_header_data);
+      
+      
+      
+             ticker_data = {}
+      
+             ticker_data["raw_price_data"] = stockInfo;
+
+              //range charts
+              day_price_delta =
+                (ticker_data["raw_price_data"]["latestPrice"] -
+                  ticker_data["raw_price_data"]["previousClose"]) /
+                ticker_data["raw_price_data"]["previousClose"];
+
+              if (day_price_delta > 0) {
+                threshold_color = "#50C878";
+              } else {
+                threshold_color = "#FF5252";
+              }
+
+              {
+                var data = [
+                  {
+                    type: "indicator",
+                    mode: "gauge",
+                    title: {
+                      text: "<b>52 Week:</b>",
+
+                      font: {
+                        size: 12,
+                      },
+                    },
+                    value: ticker_data["raw_price_data"][
+                      "latestPrice"
+                    ].toString(),
+                    domain: { x: [0, 1], y: [0, 0.25] },
+
+                    gauge: {
+                      shape: "bullet",
+                      axis: {
+                        linewidth: 0,
+
+                        range: [
+                          ticker_data["raw_price_data"]["week52Low"],
+                          ticker_data["raw_price_data"]["week52High"],
+                        ],
+                        tickfont: {
+                          size: 11,
+                          color: "black",
+                        },
+                        tickmode: "array",
+
+                        tickvals: [
+                          ticker_data["raw_price_data"]["week52Low"],
+                          ticker_data["raw_price_data"]["week52High"],
+                        ],
+                        ticktext: [
+                          "$" +
+                            ticker_data["raw_price_data"][
+                              "week52Low"
+                            ].toString(),
+                          "$" +
+                            ticker_data["raw_price_data"][
+                              "week52High"
+                            ].toString(),
+                        ],
+                      },
+                      threshold: {
+                        line: {
+                          color: threshold_color,
+                          width: 2,
+                          gradient: { yanchor: "vertical" },
+                        },
+                        thickness: 1,
+                        value: ticker_data["raw_price_data"][
+                          "latestPrice"
+                        ].toString(),
+                      },
+                      bgcolor: "white",
+                      steps: [
+                        {
+                          range: [
+                            ticker_data["raw_price_data"]["low"],
+                            ticker_data["raw_price_data"]["high"],
+                          ],
+                          color: "lightgray",
+                        },
+                      ],
+                      bar: { color: "transparent" },
+                    },
+                  },
+
+                  {
+                    type: "indicator",
+                    mode: "gauge",
+                    title: {
+                      text: "<b>Today:</b>",
+
+                      font: {
+                        size: 12,
+                      },
+                    },
+                    mode: "gauge",
+                    value: ticker_data["raw_price_data"][
+                      "latestPrice"
+                    ].toString(),
+                    domain: { x: [0, 1], y: [0.75, 1] },
+
+                    gauge: {
+                      shape: "bullet",
+                      axis: {
+                        linewidth: 0,
+
+                        range: [
+                          ticker_data["raw_price_data"]["low"],
+                          ticker_data["raw_price_data"]["high"],
+                        ],
+                        tickfont: {
+                          size: 11,
+                          color: "black",
+                        },
+                        tickmode: "array",
+                        tickvals: [
+                          ticker_data["raw_price_data"]["low"],
+                          ticker_data["raw_price_data"]["high"],
+                        ],
+                        ticktext: [
+                          "$" + ticker_data["raw_price_data"]["low"].toString(),
+                          "$" +
+                            ticker_data["raw_price_data"]["high"].toString() +
+                            "",
+                        ],
+                      },
+                      threshold: {
+                        line: {
+                          color: threshold_color,
+                          width: 2,
+                          gradient: { yanchor: "vertical" },
+                        },
+                        thickness: 1,
+                        value: ticker_data["raw_price_data"][
+                          "latestPrice"
+                        ].toString(),
+                      },
+                      bgcolor: "white",
+                      steps: [
+                        {
+                          range: [
+                            ticker_data["raw_price_data"]["low"],
+                            ticker_data["raw_price_data"]["high"],
+                          ],
+                          color: "lightgray",
+                        },
+                      ],
+                      bar: { color: "transparent" },
+                    },
+                  },
+                ];
+
+                var layout = {
+              
+                  height: 107,
+                  margin: { t: 10, b: 25, l: 75, r: 27 },
+                  font: { color: "black" },
+                };
+                var config = {
+                  responsive: true,
+                  displaylogo: false,
+                  displayModeBar: false,
+                };
+
+                Plotly.newPlot("dewey_site__price_action", data, layout, config);
+              }
+            
+      
+      
+      
+      
+      
+      
+      
+      
+      },
+      error: function (err) {
+        console.log(err);
+      },
+    });
+
+
+  //draw valuation charts
+
+    $.ajax({
+      url:
+        "{{ BASE_URL }}/valuation_api/?ticker=" +
+        ticker,
+
+      success: function (valuation_data) {
+
+       function parseChartData(chart_data_input) {
+                var chart_data_output = {};
+
+                var chart_dates = [];
+
+                var pre_dates = Object.keys(chart_data_input);
+
+                for (i = 0; i < pre_dates.length; i++) {
+                  chart_date = pre_dates[i];
+
+                  chart_dates.push(
+                    moment.unix(chart_date / 1000).format("YYYY-MM-DD")
+                  );
+                }
+
+                chart_data_output["chart_dates"] = chart_dates;
+
+                var chart_values = [];
+
+                var pre_chart_values = Object.values(chart_data_input);
+
+                for (i = 0; i < pre_chart_values.length; i++) {
+                  chart_value = pre_chart_values[i];
+
+                  try {
+                    if (chart_value.includes("T")) {
+                      chart_value =
+                        chart_value.replace("T", "") * 1000000000000;
+                    } else if (chart_value.includes("B")) {
+                      chart_value =
+                        parseInt(chart_value.replace("B", "")) * 1000000000;
+                    } else if (chart_value.includes("M")) {
+                      chart_value =
+                        parseInt(chart_value.replace("M", "")) * 1000000;
+                    }
+                  } catch (err) {
+                    chart_value = 0;
+                  }
+
+                  chart_values.push(chart_value);
+                }
+
+                chart_data_output["chart_values"] = chart_values;
+
+                return chart_data_output;
+              }
+
+              var valuation_data = valuation_data;
+
+              pe_data = parseChartData(
+                JSON.parse(JSON.parse(valuation_data))["Forward P/E 1"]
+              );
+
+              market_cap_data = parseChartData(
+                JSON.parse(JSON.parse(valuation_data))[
+                  "Market Cap (intraday) 5"
+                ]
+              );
+
+              ps_data = parseChartData(
+                JSON.parse(JSON.parse(valuation_data))["Price/Sales (ttm)"]
+              );
+
+              {
+                var data = [
+                  {
+                    x: market_cap_data["chart_dates"],
+                    y: market_cap_data["chart_values"],
+                    type: "scatter",
+                  },
+                ];
+
+                var config = {
+                  responsive: true,
+                  displaylogo: false,
+                  displayModeBar: false,
+                };
+
+                var layout = {
+                  
+                  height: 107,
+                  margin: { t: 10, b: 25, l: 50, r: 20 },
+                  font: { color: "black" },
+                  xaxis: {
+                  tickfont: {
+                    size: 10,
+                    color: "black",
+                  }
+                }
+
+
+                };
+                try {
+                  Plotly.newPlot("dewey_site__marketcap_chart", data, layout, config);
+                } catch (error) {
+                  console.log("no market cap data...");
+                  console.log(error)
+                }
+              }
+
+              {
+                var data = [
+                  {
+                    x: pe_data["chart_dates"],
+                    y: pe_data["chart_values"],
+                    type: "scatter",
+                  },
+                ];
+
+                var config = {
+                  responsive: true,
+                  displaylogo: false,
+                  displayModeBar: false,
+                };
+
+                var layout = {
+                  
+                  height: 107,
+                  margin: { t: 10, b: 25, l: 50, r: 20 },
+                  font: { color: "black" },
+                  xaxis: {
+                  tickfont: {
+                    size: 10,
+                    color: "black",
+                  }
+                }
+
+
+                };
+
+                try {
+                  Plotly.newPlot("dewey_site__pe_chart", data, layout, config);
+                } catch (error) {
+                  console.log("no pe data...");
+                }
+              }
+
+              {
+                var data = [
+                  {
+                    x: ps_data["chart_dates"],
+                    y: ps_data["chart_values"],
+                    type: "scatter",
+                  },
+                ];
+
+                var config = {
+                  responsive: true,
+                  displaylogo: false,
+                  displayModeBar: false,
+                };
+
+                var layout = {
+                  
+                  height: 107,
+                  margin: { t: 10, b: 25, l: 50, r: 20 },
+                  font: { color: "black" },
+                  xaxis: {
+                  tickfont: {
+                    size: 10,
+                    color: "black",
+                  }
+                }
+
+
+                };
+
+                try {
+                  Plotly.newPlot("dewey_site__ps_chart", data, layout, config);
+                } catch (error) {
+                  console.log("no ps data...");
+                }
+              }
+      }
+      
+      ,
+
+      error: function (xhr, ajaxOptions, thrownError) {
+        console.log(xhr.status);
+        console.log("no valuation data...");
+
+      },
+    });
+
+
+
+
+
+              
+             
+            
+
+
+
+
+
+
+
+</script>

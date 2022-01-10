@@ -1,0 +1,2521 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ATC Capital Partners - Manifest</title>
+
+    <!-- Custom fonts for this template-->
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" type="text/css">
+
+
+    <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css">
+<!-- Fengyuan Chen's Datepicker -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
+        
+
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+
+    <style>
+      .col-xl-3 {
+        flex: 0 0 25%;
+        max-width: 20%;
+        }
+        .select2-selection  {
+          width: 100% !important;
+            }
+        
+        .chart-area {
+            height: 30vh 
+        }
+
+
+
+        .card-body {
+            padding: 0.5rem;
+            padding-top: 0rem;
+            padding-right: 0rem;
+            margin:0.75em
+        }
+
+        .topbar {
+            height: 3.475rem
+        }
+
+        td {
+            word-wrap: break-word;
+            font-size: 0.7rem;
+            overflow: hidden;
+            max-height: 50px
+        }
+
+        th {
+            word-wrap: break-word;
+            font-size: 0.75rem;
+        }
+
+
+        .neg-margin-header {
+            margin-bottom: -2.3em;
+        }
+
+        #articles {
+            table-layout: fixed;
+            width: 100% !important;
+        }
+
+        #articles td,
+        #articles th {
+            width: auto !important;
+            white-space: normal;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        #dev-data-chart {
+            margin: auto;
+
+        }
+
+        body {
+            font-size: 0.7rem;
+            font-family: Salesforce Sans, -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica, helvetica neue, ubuntu, roboto, noto, segoe ui, arial, sans-serif
+        }
+
+
+        .border-top-primary {
+            border-top: 0.25rem solid #333333 !important;
+        }
+
+        .border-left-secondary {
+            border-left: 0.25rem solid #858796 !important;
+        }
+
+        .border-top-secondary {
+            border-top: 0.25rem solid #858796 !important;
+        }
+
+        .border-left-success {
+            border-left: 0.25rem solid #1cc88a !important;
+        }
+
+        .border-top-success {
+            border-top: 0.25rem solid #1cc88a !important;
+        }
+
+        .border-left-info {
+            border-left: 0.25rem solid #36b9cc !important;
+        }
+
+        .border-top-info {
+            border-top: 0.25rem solid #36b9cc !important;
+        }
+
+        .border-left-warning {
+            border-left: 0.25rem solid #f6c23e !important;
+        }
+
+        .border-top-warning {
+            border-top: 0.25rem solid #f6c23e !important;
+        }
+
+        .border-left-danger {
+            border-left: 0.25rem solid #e74a3b !important;
+        }
+
+        .border-top-danger {
+            border-top: 0.25rem solid #e74a3b !important;
+        }
+
+        .border-left-light {
+            border-left: 0.25rem solid #f8f9fc !important;
+        }
+
+        .border-top-light {
+            border-top: 0.25rem solid #f8f9fc !important;
+        }
+
+        .border-left-dark {
+            border-left: 0.25rem solid #5a5c69 !important;
+        }
+
+        .border-top-dark {
+            border-top: 0.25rem solid #5a5c69 !important;
+        }
+
+        .bg-gradient-gray {
+            background-color: #8A8A8A;
+            background-image: linear-gradient(180deg, #908386 10%, #8A8A8A 100%);
+            background-size: cover;
+        }
+
+        .table th {
+            padding: .5rem;
+            vertical-align: top;
+            border-top: 1px solid #e3e6f0;
+        }
+
+        .sidebar.toggled {
+            overflow: visible;
+            width: 8rem !important;
+        }
+
+        td {
+            word-break: break-word;
+            vertical-align: top;
+            overflow-x: hidden;
+        }
+
+        #comment_table {
+            table-layout: fixed;
+            overflow-x: hidden;
+        }
+
+        #author_table {
+            table-layout: fixed;
+            overflow-x: hidden;
+        }
+
+        #data_wrapper.dataTables_wrapper {
+            overflow-x: hidden;
+            background-color: #F1F1F1 !important;
+        }
+
+        #data_wrapper .fg-toolbar.ui-toolbar.ui-widget-header.ui-helper-clearfix.ui-corner-bl.ui-corner-br {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+
+        div.dataTables_wrapper {
+            overflow-x: hidden;
+        }
+
+        .dataTables_scrollBody {
+            overflow-x: hidden !important;
+        }
+
+        .row {
+            margin-bottom: 1em
+        }
+
+        .big-row {
+            height: 72.5vh;
+            margin-bottom: 1.5em
+        }
+
+
+        .text-black-50 {
+            color: rgba(0, 0, 0, 0.5) !important;
+        }
+
+        .mini-card {
+            padding: 0.1rem 1rem !important;
+            margin:0px
+        }
+
+        .mini-row {
+            margin-bottom: 0.1rem !important
+        }
+
+
+        .text-primary {
+            color: #333333 !important
+        }
+
+        .text-secondary {
+            color: #333333 !important
+        }
+
+
+        .border-left-primary {
+            border-left: .25rem solid #333333 !important
+        }
+
+        .border-all-primary {
+            border: .15rem solid #333333 !important
+        }
+
+        .border-all-primary-thick {
+            border: .25rem solid #333333 !important
+        }
+
+        .border-right-primary {
+            border-right: .25rem solid #333333 !important
+        }
+
+
+
+        a.bg-primary:hover,
+        a.bg-primary:focus,
+        button.bg-primary:hover,
+        button.bg-primary:focus {
+            background-color: #2653d4 !important;
+        }
+
+        .bg-secondary {
+            background-color: #858796 !important;
+        }
+
+
+        .bg-primary {
+            background-color: #333333 !important
+        }
+
+
+        a.bg-secondary:hover,
+        a.bg-secondary:focus,
+        button.bg-secondary:hover,
+        button.bg-secondary:focus {
+            background-color: #6b6d7d !important;
+        }
+
+        .bg-success {
+            background-color: #1cc88a !important;
+        }
+
+        a.bg-success:hover,
+        a.bg-success:focus,
+        button.bg-success:hover,
+        button.bg-success:focus {
+            background-color: #169b6b !important;
+        }
+
+        .bg-info {
+            background-color: #36b9cc !important;
+        }
+
+        a.bg-info:hover,
+        a.bg-info:focus,
+        button.bg-info:hover,
+        button.bg-info:focus {
+            background-color: #2a96a5 !important;
+        }
+
+        .bg-warning {
+            background-color: #f6c23e !important;
+        }
+
+        a.bg-warning:hover,
+        a.bg-warning:focus,
+        button.bg-warning:hover,
+        button.bg-warning:focus {
+            background-color: #f4b30d !important;
+        }
+
+        .bg-danger {
+            background-color: #e74a3b !important;
+        }
+
+        a.bg-danger:hover,
+        a.bg-danger:focus,
+        button.bg-danger:hover,
+        button.bg-danger:focus {
+            background-color: #d52a1a !important;
+        }
+
+        .bg-light {
+            background-color: #f8f9fc !important;
+        }
+
+        a.bg-light:hover,
+        a.bg-light:focus,
+        button.bg-light:hover,
+        button.bg-light:focus {
+            background-color: #d4daed !important;
+        }
+
+        .bg-dark {
+            background-color: #5a5c69 !important;
+        }
+
+        a.bg-dark:hover,
+        a.bg-dark:focus,
+        button.bg-dark:hover,
+        button.bg-dark:focus {
+            background-color: #42444e !important;
+        }
+
+        .border-bottom-primary {
+            border-bottom: 0.25rem solid #333333 !important;
+        }
+
+        .border-left-secondary {
+            border-left: 0.25rem solid #333333 !important;
+        }
+
+        .border-bottom-secondary {
+            border-bottom: 0.25rem solid #333333 !important;
+        }
+
+        .border-left-success {
+            border-left: 0.25rem solid #1cc88a !important;
+        }
+
+        .border-bottom-success {
+            border-bottom: 0.25rem solid #1cc88a !important;
+        }
+
+        .border-left-info {
+            border-left: 0.25rem solid #36b9cc !important;
+        }
+
+        .border-bottom-info {
+            border-bottom: 0.25rem solid #36b9cc !important;
+        }
+
+        .border-left-warning {
+            border-left: 0.25rem solid #f6c23e !important;
+        }
+
+        .border-bottom-warning {
+            border-bottom: 0.25rem solid #f6c23e !important;
+        }
+
+        .border-left-danger {
+            border-left: 0.25rem solid #e74a3b !important;
+        }
+
+        .border-bottom-danger {
+            border-bottom: 0.25rem solid #e74a3b !important;
+        }
+
+        .border-left-light {
+            border-left: 0.25rem solid #f8f9fc !important;
+        }
+
+        .border-bottom-light {
+            border-bottom: 0.25rem solid #f8f9fc !important;
+        }
+
+        .border-left-dark {
+            border-left: 0.25rem solid #5a5c69 !important;
+        }
+
+        .border-bottom-dark {
+            border-bottom: 0.25rem solid #5a5c69 !important;
+        }
+
+        a.bg-primary:hover,
+        a.bg-primary:focus,
+        button.bg-primary:hover,
+        button.bg-primary:focus {
+            background-color: #2653d4 !important;
+        }
+
+        .bg-secondary {
+            background-color: #858796 !important;
+        }
+
+        a.bg-secondary:hover,
+        a.bg-secondary:focus,
+        button.bg-secondary:hover,
+        button.bg-secondary:focus {
+            background-color: #6b6d7d !important;
+        }
+
+        .bg-success {
+            background-color: #1cc88a !important;
+        }
+
+        a.bg-success:hover,
+        a.bg-success:focus,
+        button.bg-success:hover,
+        button.bg-success:focus {
+            background-color: #169b6b !important;
+        }
+
+        .bg-info {
+            background-color: #36b9cc !important;
+        }
+
+        a.bg-info:hover,
+        a.bg-info:focus,
+        button.bg-info:hover,
+        button.bg-info:focus {
+            background-color: #2a96a5 !important;
+        }
+
+        .bg-warning {
+            background-color: #f6c23e !important;
+        }
+
+        a.bg-warning:hover,
+        a.bg-warning:focus,
+        button.bg-warning:hover,
+        button.bg-warning:focus {
+            background-color: #f4b30d !important;
+        }
+
+        .bg-danger {
+            background-color: #e74a3b !important;
+        }
+
+        a.bg-danger:hover,
+        a.bg-danger:focus,
+        button.bg-danger:hover,
+        button.bg-danger:focus {
+            background-color: #d52a1a !important;
+        }
+
+        .bg-light {
+            background-color: #f8f9fc !important;
+        }
+
+        a.bg-light:hover,
+        a.bg-light:focus,
+        button.bg-light:hover,
+        button.bg-light:focus {
+            background-color: #d4daed !important;
+        }
+
+        .bg-dark {
+            background-color: #5a5c69 !important;
+        }
+
+        a.bg-dark:hover,
+        a.bg-dark:focus,
+        button.bg-dark:hover,
+        button.bg-dark:focus {
+            background-color: #42444e !important;
+        }
+
+         !important;
+        }
+
+        a.bg-primary:hover,
+        a.bg-primary:focus,
+        button.bg-primary:hover,
+        button.bg-primary:focus {
+            background-color: #2653d4 !important;
+        }
+
+        .bg-secondary {
+            background-color: #858796 !important;
+        }
+
+        a.bg-secondary:hover,
+        a.bg-secondary:focus,
+        button.bg-secondary:hover,
+        button.bg-secondary:focus {
+            background-color: #6b6d7d !important;
+        }
+
+        .bg-success {
+            background-color: #1cc88a !important;
+        }
+
+        a.bg-success:hover,
+        a.bg-success:focus,
+        button.bg-success:hover,
+        button.bg-success:focus {
+            background-color: #169b6b !important;
+        }
+
+        .bg-info {
+            background-color: #36b9cc !important;
+        }
+
+        a.bg-info:hover,
+        a.bg-info:focus,
+        button.bg-info:hover,
+        button.bg-info:focus {
+            background-color: #2a96a5 !important;
+        }
+
+        .bg-warning {
+            background-color: #f6c23e !important;
+        }
+
+        a.bg-warning:hover,
+        a.bg-warning:focus,
+        button.bg-warning:hover,
+        button.bg-warning:focus {
+            background-color: #f4b30d !important;
+        }
+
+        .bg-danger {
+            background-color: #e74a3b !important;
+        }
+
+        a.bg-danger:hover,
+        a.bg-danger:focus,
+        button.bg-danger:hover,
+        button.bg-danger:focus {
+            background-color: #d52a1a !important;
+        }
+
+        .bg-light {
+            background-color: #f8f9fc !important;
+        }
+
+        a.bg-light:hover,
+        a.bg-light:focus,
+        button.bg-light:hover,
+        button.bg-light:focus {
+            background-color: #d4daed !important;
+        }
+
+        .bg-dark {
+            background-color: #5a5c69 !important;
+        }
+
+        a.bg-dark:hover,
+        a.bg-dark:focus,
+        button.bg-dark:hover,
+        button.bg-dark:focus {
+            background-color: #42444e !important;
+        }
+
+        .container,
+        .container-fluid,
+        .container-lg,
+        .container-md,
+        .container-sm,
+        .container-xl {
+            padding-left: 1rem;
+            padding-right: 1.5em;
+        }
+
+
+        .card-header {
+            padding: .75rem 1rem;
+            border-bottom: 0px
+        }
+
+
+        .source_filter_holder {
+            max-height: 20px;
+            width: 100%;
+            padding-right: 0px
+        }
+
+        label {
+            
+            margin-right: 10px;
+            margin-bottom: 0px;
+            margin-top: 5px;
+            color: #333333 !important;
+            font-weight: bold;
+            
+        }
+
+
+        .filter_rail label {
+            width: 100%;
+            margin-right: 10px;
+            margin-bottom: 3px;
+            font-size:14px;
+
+            color: #333333 !important;
+            font-weight: bold;
+            clear:both
+        }
+
+        .filter_rail form {
+            margin-bottom: 15px
+        }
+
+
+
+
+        .source_select_column {
+            padding-right: 0px;
+            padding-top: 1px !important;
+            padding-bottom: 1px !important;
+        }
+
+
+        .dataTables_wrapper label {
+            float: right;
+            margin-right: 1em
+        }
+
+
+
+
+        .select2 {
+            margin-top: 0;
+            width: 100% !important
+        }
+
+        #comment_table td {
+            overflow-wrap: break-word;
+        }
+
+        #author_table td {
+            overflow-wrap: break-word;
+        }
+
+        .select2-selection__rendered {
+            line-height: 18px !important;
+        }
+
+        .select2-container .select2-selection--single {
+            height: 20px !important;
+        }
+
+        .select2-selection__arrow {
+            height: 19px !important;
+        }
+
+
+
+
+        .select2-search__field {
+            margin-top: 0px !important;
+        }
+
+        .select2-selection__choice {
+            margin-top: 0px !important;
+        }
+
+        .col,
+        .col-1,
+        .col-10,
+        .col-11,
+        .col-12,
+        .col-2,
+        .col-3,
+        .col-4,
+        .col-5,
+        .col-6,
+        .col-7,
+        .col-8,
+        .col-9,
+        .col-auto,
+        .col-lg,
+        .col-lg-1,
+        .col-lg-10,
+        .col-lg-11,
+        .col-lg-12,
+        .col-lg-2,
+        .col-lg-3,
+        .col-lg-4,
+        .col-lg-5,
+        .col-lg-6,
+        .col-lg-7,
+        .col-lg-8,
+        .col-lg-9,
+        .col-lg-auto,
+        .col-md,
+        .col-md-1,
+        .col-md-10,
+        .col-md-11,
+        .col-md-12,
+        .col-md-2,
+        .col-md-3,
+        .col-md-4,
+        .col-md-5,
+        .col-md-6,
+        .col-md-7,
+        .col-md-8,
+        .col-md-9,
+        .col-md-auto,
+        .col-sm,
+        .col-sm-1,
+        .col-sm-10,
+        .col-sm-11,
+        .col-sm-12,
+        .col-sm-2,
+        .col-sm-3,
+        .col-sm-4,
+        .col-sm-5,
+        .col-sm-6,
+        .col-sm-7,
+        .col-sm-8,
+        .col-sm-9,
+        .col-sm-auto,
+        .col-xl,
+        .col-xl-1,
+        .col-xl-10,
+        .col-xl-11,
+        .col-xl-12,
+        .col-xl-2,
+        .col-xl-3,
+        .col-xl-4,
+        .col-xl-5,
+        .col-xl-6,
+        .col-xl-7,
+        .col-xl-8,
+        .col-xl-9,
+        .col-xl-auto {
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+        }
+
+        div.dataTables_wrapper div.dataTables_paginate {
+            margin: 10px;
+        }
+
+
+        img{
+    /* width:100%; */
+    max-width:600px !important;
+        }
+
+    
+        table.dataTable>thead>tr>th:not(.sorting_disabled), table.dataTable>thead>tr>td:not(.sorting_disabled) {
+        padding-right: 0px;
+        }
+
+        .mini-heading {
+            font-size:14px;
+            padding-left:0.5em
+        }
+
+        #id_search_form {
+            background-color: white;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            cursor: text;
+            min-height: 32px;
+            width: 100% !important
+        }
+
+        #id_start_date{
+            max-width: 100%;
+            background-color: white;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            cursor: text;
+            min-height: 32px;
+
+
+        }
+
+        #id_end_date {
+            max-width: 100%;
+            background-color: white;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            cursor: text;
+            min-height: 32px;
+
+        }
+
+        #dev_data_table thead th { 
+            white-space: nowrap; 
+        }
+
+         
+        /* @media (min-width: 900px) {
+        .container, .container-sm, .container-md, .container-lg {
+        max-width: 860px;
+        }
+        } */
+
+        .dt-buttons {
+            float:right
+        }
+
+        :root {
+            --breakpoint-sm: 536px;
+            --breakpoint-md: 668px;
+            --breakpoint-lg: 792px;
+            --breakpoint-xl: 1200px;
+
+        }
+
+    </style>
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+    
+        
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- Page Heading -->
+                    <div class="row mini-row" style="width:100%;padding:0.5em; color:#42444e">
+                       <strong style='font-size:16px'> &#9654;ATC&#9664; Capital Partners</strong>
+                    </div>
+                    
+                    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-1 py-1 px-2 mt-1 ml-2 static-top bg-light"
+                        style="margin-left: -1.0em !important; display:none">
+
+
+                        <div class="row" style="width:100%;  display:none">
+                            <div class="col-xl-3 col-lg-3">
+                    
+                                <div class="card border-all-primary-thick    py-1">
+                                    <div class="card-body mini-card">
+                                        <div class="row no-gutters align-items-center mini-row">
+                                            <div class="col mr-2">
+                                                <div
+                                                    class="text-xs font-weight-bold  text-uppercase mb-1 text-primary ">
+                                                    Tech Readiness
+                                                </div>
+                                                <div class="row no-gutters align-items-center mini-row">
+
+                                                    <div class="col">
+                                                        <div class="progress progress-sm mr-2">
+                                                            <div class="progress-bar bg-primary" role="progressbar"
+                                                                style="width: 30%" aria-valuenow="30" aria-valuemin="0"
+                                                                aria-valuemax="100">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                 
+                            <div class="col-xl-3 col-lg-3">
+                                <div class="card border-top-success shadow  py-1">
+                                    <div class="card-body mini-card">
+                                        <div class="row no-gutters align-items-center mini-row">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Application Development</div>
+                                                <div class="row no-gutters align-items-center">
+
+                                                    <div class="col">
+                                                        <div class="progress progress-sm mr-2 bg-light">
+                                                            <div class="progress-bar bg-success" role="progressbar"
+                                                                style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-lg-3">
+
+                  
+
+                                <div class="card border-top-info shadow  py-1">
+                                    <div class="card-body mini-card">
+                                        <div class="row no-gutters align-items-center mini-row">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    Market Adoption
+                                                </div>
+                                                <div class="row no-gutters align-items-center">
+
+                                                    <div class="col">
+                                                        <div class="progress progress-sm mr-2">
+                                                            <div class="progress-bar bg-info" role="progressbar"
+                                                                style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-lg-3">
+                          
+                                <div class="card border-top-warning shadow  py-1">
+                                    <div class="card-body mini-card">
+                                        <div class="row no-gutters align-items-center mini-row">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                    Supporting Ecosystem</div>
+                                                <div class="row no-gutters align-items-center">
+
+                                                    <div class="col">
+                                                        <div class="progress progress-sm mr-2">
+                                                            <div class="progress-bar bg-warning" role="progressbar"
+                                                                style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div> -->
+
+                    <!-- Content Row -->
+
+            
+
+                    
+         
+             
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3">
+                    
+                            <div class="card shadow border-all-primary mt-1" style="height:100%">
+                    
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">Filters</h6>
+                    
+                                </div>
+                                <div class="card-body" id="data_holder">
+                    
+                                    <div class="filter_rail">
+                                      
+                                        <form id="topic_filter_form" style="margin-left: -3px;">
+                    
+                                            <!-- {% csrf_token %} -->
+                                            {{ form_set.topic_filter_form }}
+                    
+                                        </form>
+                    
+                    
+                    
+                    
+                    
+                                        <form id="sector_filter_form">
+                    
+                                            <!-- {% csrf_token %} -->
+                                            {{ form_set.sector_filter_form }}
+                                        </form>
+                    
+                    
+                    
+                    
+                    
+                                        <form id="company_filter_form">
+                    
+                                            <!-- {% csrf_token %} -->
+                                            {{ form_set.company_filter_form }}
+                                        </form>
+                    
+                    
+                    
+                    
+                                        <form id="tech_vs_non_tech_filter_form">
+                    
+                                            <!-- {% csrf_token %} -->
+                                            {{ form_set.tech_vs_non_tech_filter_form }}
+                                        </form>
+
+
+                    
+                                        <form id="search_form">
+                    
+                                            <!-- {% csrf_token %} -->
+                                            {{ form_set.search_form }}
+                                        </form>
+
+                                        <form id="date_form">
+                    
+                                            <!-- {% csrf_token %} -->
+                                            <div style="display: inline-block;">
+                                                <div style='width: 46%; float:left'>
+                                                    {{ form_set.date_form.start_date.label_tag }}
+                                                    {{ form_set.date_form.start_date }}
+                                                </div>
+
+                                                <div style='width: 46%; float:right'>
+                                                {{ form_set.date_form.end_date.label_tag }}
+                                                {{ form_set.date_form.end_date }}
+                                                </div>
+                                            </div>
+                                        </form>
+
+
+                                        <form id="source_filter_form">
+                    
+                                            <!-- {% csrf_token %} -->
+                                            {{ form_set.source_filter_form }}
+                                        </form>
+
+
+
+                                        <form id="pdoc_filter_form">
+                    
+                                            <!-- {% csrf_token %} -->
+                                        {{ form_set.pdoc_filter_form }}
+                                        </form>
+
+
+                                        <form id="vector_filter_form">
+                    
+                                            <!-- {% csrf_token %} -->
+                                            {{ form_set.vector_filter_form }}
+                                        </form>
+
+
+                                        
+                
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-9 col-lg-9">
+                            <div class="card shadow border-all-primary mt-1">
+                    
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">Discussion Activity</h6>
+                    
+                                </div>
+                                <div class="card-body" id="data_holder">
+                                    <div class="row">
+                                        <div class="col-xl-6 col-lg-6">
+                                            <p class="m-0 font-weight-bold text-primary mini-heading">Total Mentions</p>
+                                            <div class="chart-area" style="position: relative; margin-bottom:2em">
+                                                <canvas id="comment_agg-chart" data-url="{% url 'comment_agg' %}"></canvas>
+                                            </div>
+                                        </div>
+                    
+                                        <div class="col-xl-6 col-lg-6">
+                                            <p class="m-0 font-weight-bold text-primary mini-heading">Mentions by Month</p>
+                                            <div class="chart-area" style="position: relative;">
+                                                <canvas id="comment_company_monthly_sum_chart"
+                                                    data-url="{% url 'comment_company_monthly_sum_view'  %}"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-12 col-lg-12">
+                                            <div class="neg-margin-header">
+                                                <p class="m-0 font-weight-bold text-primary mini-heading">Raw Feed</p>
+                                            </div>
+                                            <table id="comment_table" class="table table-striped table-bordered wrap">
+                    
+                                                <thead>
+                                                    <tr>
+                                                        <th data-data="id">id</th>
+                                                        <th data-data="posted_date">Date</th>
+                                                        <th data-data="content">Content</th>
+                                                        <th data-data="source">Source</th>
+                                                        <th data-data="username">Username</th>
+                                                        <th data-data="companies__company">Companies</th>
+                                                        <th data-data="consolidatedsearchparam">Terms</th>
+                                                        <th data-data="link">Link</th>
+                                                    </tr>
+                                                </thead>
+                    
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                            </div>
+                    
+                    
+                    
+                    
+                    
+                            <div class="card shadow border-all-primary mt-1">
+                    
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">H1-B Hiring Activity</h6>
+                    
+                                </div>
+                                <div class="card-body" id="data_holder">
+                                    <div class="row">
+                                        <div class="col-xl-6 col-lg-6">
+                                            <p class="m-0 font-weight-bold text-primary mini-heading">Total H1-B Jobs</p>
+                                            <div class="chart-area" style="position: relative; margin-bottom:2em">
+                                                <canvas id="doljoblisting_agg-chart" data-url="{% url 'doljoblisting_agg' %}"></canvas>
+                                            </div>
+                                        </div>
+                    
+                                        <div class="col-xl-6 col-lg-6">
+                                            <p class="m-0 font-weight-bold text-primary mini-heading">H1-B Jobs by Month</p>
+                                            <div class="chart-area" style="position: relative;">
+                                                <canvas id="doljoblisting_company_monthly_sum_chart"
+                                                    data-url="{% url 'doljoblisting_company_monthly_sum_view'  %}"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-12 col-lg-12">
+                    
+                                            <!-- #jobs data table-->
+                                            <div class="neg-margin-header">
+                                                <p class="m-0 font-weight-bold text-primary mini-heading">Raw Feed</p>
+                                            </div>
+                                            <table id="job_table" class="table table-striped table-bordered wrap">
+                    
+                                                <thead>
+                                                    <tr>
+                                                        <th data-data="CASE_SUBMITTED">Date</th>
+                                                        <th data-data="JOB_TITLE">Job Title</th>
+                                                        <th data-data="EMPLOYER_NAME">Employer Name</th>
+                                                        <th data-data="WAGE_RATE_OF_PAY_FROM">Wage Min.</th>
+                                                        <th data-data="companies__company">Related Companies</th>
+                                                    </tr>
+                                                </thead>
+                    
+                                            </table>
+                    
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                            </div>
+
+
+
+                            <div class="card shadow border-all-primary mt-1">
+                    
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">Developer Usage Activity</h6>
+                    
+                                </div>
+                                <div class="card-body" id="data_holder">
+                                    <div class="row">
+                                        <div class="col-xl-6 col-lg-6">
+                                            <p class="m-0 font-weight-bold text-primary mini-heading">Hottest Tags (trailing 90 days)</p>
+                                            <div style="max-height: 30vh; overflow-y: scroll;">
+                                            <div class="chart-area" style="position: relative; height:75vh; margin-bottom:2em;">
+                                                <canvas id="dev-data-hottest-tags-chart" data-url="{% url 'dev-data-hottest-tags-chart' %}"></canvas>
+                                            </div>
+                                        </div>
+                                        </div>
+                    
+                                        <div class="col-xl-6 col-lg-6">
+                                            <p class="m-0 font-weight-bold text-primary mini-heading">Developer Activity by Month</p>
+                                            <div class="chart-area" style="position: relative;">
+                                                <canvas id="dev-data-chart" data-url="{% url 'devdata_agg'  %}"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-12 col-lg-12">
+                    
+                                            <!-- #developer data table-->
+                                            <div class="neg-margin-header">
+                                                <p class="m-0 font-weight-bold text-primary mini-heading">Developer Activity Data Monthly (Raw)</p>
+                                            </div>
+                                            <table id="dev_data_table" class="table table-striped table-bordered wrap">
+                    
+                                                <thead>
+                                                    <tr>
+                                                        <th data-data="tag">Tag</th>
+                                                        <th data-data="creation_date">Date</th>
+                                                        <th data-data="tag_master__companies__company">Company</th>
+                                                        <th data-data="tag_master__products__name">Product</th>
+                                                        <th data-data="total_activity">Activity</th>
+                                                        <th data-data="change__chg">Trail.90D y/y chg</th>
+                                                    
+                                                    </tr>
+                                                </thead>
+                    
+                                            </table>
+                    
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                            </div>
+
+                            
+
+
+
+
+                            <div class="card shadow border-all-primary mt-1">
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">ATC Circle</h6>
+
+                                </div>
+                                <div class="card-body" id="data_holder">
+                
+                                         <table id="author_table" class="table table-striped table-bordered wrap">
+                    
+                                                <thead>
+                                                    <tr>
+                                                        <th data-data="id">id</th>
+                                                        <th data-data="username">Username</th>
+                                                        <th data-data="title">Title</th>
+                                                        <th data-data="expert_on">Expert On</th>
+                                                        <th data-data="profile_link">Profile Link</th>
+                                                        <th data-data="employee_company__company">Employe Of:</th>
+                                                        <th data-data="ex_employee_company__company">Ex Emp. Of:</th>
+                                                    </tr>
+                                                </thead>
+                    
+                                            </table>
+
+
+
+                                </div>
+                            </div>
+                    
+                    
+                        </div>
+                    </div>
+
+
+                
+                 
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; ATC Capital Partners</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+
+    
+    
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    
+
+    <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+
+    <script src="{% static 'vendor/datatables/RowGroup-1.1.2/js/dataTables.rowGroup.min.js' %}"></script>
+
+    <script src="{% static 'vendor/datatables/datatables.mark.js-master/src/datatables.mark.js' %}"></script>
+
+    <script src="{% static 'vendor/datatables/datatables-mark.js' %}"></script>
+
+    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+
+    
+
+
+
+
+
+
+    <!-- JQuery-->
+
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-colorschemes"></script>
+
+    <!-- Page level custom scripts -->
+    
+    <script>
+        
+        
+        
+
+
+
+        $(function () {
+            
+
+
+          
+            //-----------
+            //DATA TABLES
+            //-----------
+
+
+                var ticker_string = "{{ ticker_string }}"
+
+
+                // Date renderer for DataTables from cdn.datatables.net/plug-ins/1.10.21/dataRender/datetime.js
+                $.fn.dataTable.render.moment = function (from, to, locale) {
+                    // Argument shifting
+                    if (arguments.length === 1) {
+                        locale = 'en';
+                        to = from;
+                        from = 'YYYY-MM-DD';
+                    }
+                    else if (arguments.length === 2) {
+                        locale = 'en';
+                    }
+
+                    return function (d, type, row) {
+                        if (!d) {
+                            return type === 'sort' || type === 'type' ? 0 : d;
+                        }
+
+                        var m = window.moment(d, from, locale, true);
+
+                        // Order and type get a number value from Moment, everything else
+                        // sees the rendered value
+                        return m.format(type === 'sort' || type === 'type' ? 'x' : to);
+                    };
+                };
+
+
+
+            
+        
+
+                //#comment_table table DataTables definition 
+                var comment_table = $('#comment_table').DataTable({
+                    "mark": true,
+                    "orderCellsTop": true,
+                    "fixedHeader": true,
+                    "serverSide": true,
+                    "dom": 'Bfrtip',
+                    "buttons": [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ],
+                    "ajax": {
+                        "url": "/comment_table_api/?format=datatables",
+                        "type": "GET",
+                        
+                        "data":   function (d) {
+                            d.form_results = FormResults()
+
+                        }
+
+                    },
+
+                    "order": [
+                        [1, "desc"]
+                    ],
+
+                    "scrollY": '71.2vh',
+                    "pagingType": "simple",
+                    "pageLength": 20,
+                   
+                    "info": false,
+                    "responsive": true,
+                    columns: [
+                        { data: 'id', "visible": false},
+                        { data: 'posted_date', render: $.fn.dataTable.render.moment('M/D/YY'), width: '60px' },
+                        { data: 'content' },
+                        { data: 'source' , width: '90px'},
+                        { data: 'username', width: '90px' },
+                        { data: 'companies__company' , width: '90px' },
+                        { data: 'consolidatedsearchparam__term_array', width: '90px' },
+                        { data: 'link', width: '50px' }
+                    ],
+                  
+
+
+                });
+
+
+
+
+
+
+
+
+                 //#author_table table DataTables definition 
+                 var author_table = $('#author_table').DataTable({
+                    "mark": true,
+                    "orderCellsTop": true,
+                    "fixedHeader": true,
+                    "serverSide": true,
+                    "dom": 'Bfrtip',
+                    "buttons": [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ],
+                    "ajax": {
+                        "url": "/author_table_api/?format=datatables",
+                        "type": "GET",
+                        
+                        "data":   function (d) {
+                            d.form_results = FormResults()
+
+                        }
+
+                    },
+
+                    "order": [
+                        [1, "desc"]
+                    ],
+
+                    "scrollY": '31.2vh',
+                    "pagingType": "simple",
+                    "pageLength": 20,
+                   
+                    "info": false,
+                    "responsive": true,
+                    columns: [
+                        { data: 'id', "visible": false},
+                        { data: 'username'},
+                        { data: 'title' },
+                        { data: 'expert_on' },
+                        { data: 'profile_link', width: '120px' },
+                        { data: 'employee_company__company' },
+                        { data: 'ex_employee_company__company'}
+                    ],
+                  
+
+
+                });
+         
+
+
+
+                //#dev_data_table table DataTables definition 
+                var dev_data_table = $('#dev_data_table').DataTable({
+                    "mark": true,
+                    "orderCellsTop": true,
+                    "fixedHeader": true,
+                    "serverSide": true,
+                    
+                    "ajax": {
+                        "url": "/dev_data_table_api/?format=datatables",
+                        "type": "GET",
+                        
+                        "data":   function (d) {
+                            d.form_results = FormResults()
+
+                        }
+
+                    },
+
+                    "order": [
+                        [1, "desc"]
+                    ],
+
+                    "scrollY": '31.2vh',
+                    "pageLength": 100,
+                    "dom": 'Bfrtip',
+                    "buttons": [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ],
+                    "pagingType": "simple",
+                    "info": false,
+                    "responsive": true,
+                    columns: [
+                        { data: 'tag' },
+                        { data: 'creation_date', render: $.fn.dataTable.render.moment('MMM D YYYY')},
+                        { data: 'tag_master__companies__company' },
+                        { data: 'tag_master__products__name' },
+                        { data: 'total_activity'},
+                        { data: 'change__chg',
+                        
+                        "render": function (data, type, row) {
+                                return parseFloat(row.change__chg * 100).toFixed(1) + "%";
+                        },
+                        }
+                        
+                    ],
+                    
+
+
+
+                });
+
+
+                var company_table = $('#company_table').DataTable({
+                    "mark": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "/company_api/?format=datatables",
+                        "type": "GET",
+
+                        "data":   function (d) {
+                            d.form_results = FormResults()
+
+                        }
+
+                    },
+
+                    "order": [
+                        [0, "desc"]
+                    ],
+
+                    "scrollY": '31vh',
+                    "pageLength": 50,
+                    "scrollCollapse": true,
+                    "scroller": true,
+                    "dom": 'Bfrtip',
+                    "buttons": [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ],
+
+                    "info": false,
+                    "responsive": true
+
+                });
+
+
+
+
+                //#job_table table DataTables definition 
+                var job_table = $('#job_table').DataTable({
+                    "mark": true,
+                    "serverSide": true,
+                    
+                    "ajax": {
+                        "url": "/job_table_api/?format=datatables",
+                        "type": "GET",
+                        
+
+                        "data":   function (d) {
+                            d.form_results = FormResults()
+
+                        }
+                    },
+
+                    "order": [
+                        [0, "desc"]
+                    ],
+
+                    "scrollY": '51vh',
+                    "pageLength": 50,
+                    "scrollCollapse": true,
+                    "scroller": true,
+                    "pagingType": "simple",
+                    "dom": 'Bfrtip',
+                    "buttons": [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ],
+
+                    "info": false,
+                    "responsive": true,
+
+                    "columnDefs": {
+                        "visible": false,
+                        "targets": [1]
+                    }
+
+                });
+
+
+            //-----------
+            //Charts
+            //-----------
+
+            Chart.defaults.global.defaultFontSize = 9;
+
+            function DevDataChart(search) {
+                var $devDataChart = $("#dev-data-chart");
+                $.ajax({
+                    url: $devDataChart.data("url"),
+                    success: function (data) {
+
+                        var ctx = $devDataChart[0].getContext('2d');
+
+                        if (window.hasOwnProperty("dev_data_chart")) {
+                            dev_data_chart.destroy();
+                        }
+
+                        dev_data_chart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                datasets: JSON.parse(data)
+                            },
+
+                            options: {
+
+                                plugins: {
+                                    colorschemes: {
+                                        scheme: 'brewer.Paired12'
+                                    }
+                                },
+
+                                scales: {
+                                    xAxes: [{
+                                        type: 'time'
+                                    }]
+                                },
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                legend: {
+                                    display: false,
+                                },
+                                title: {
+                                    display: false,
+                                    text: 'Dev Data'
+                                }
+                            }
+                        });
+
+                    }
+                });
+
+            }
+
+            DevDataChart();
+
+
+
+            const Colors = ["#55dde0","#44a1b5","#3a7587","#2f4858","#33658a","#606f68","#ab8f4b","#f6ae2d","#f48923","#AA7C46","#f26419"]
+
+
+
+            //comments summarized by company by month
+            //time-series
+
+            function CommentCompanyMonthlySumChart(search) {
+                var $CommentCompanyMonthlySumChart = $("#comment_company_monthly_sum_chart");
+                $.ajax({
+                    data: { "form_results": FormResults()},
+                    url: $CommentCompanyMonthlySumChart.data("url"),
+                    success: function (data) {
+
+                        var ctx = $CommentCompanyMonthlySumChart[0].getContext('2d');
+
+                        if (window.hasOwnProperty("comment_company_monthly_sum_chart")) {
+                            comment_company_monthly_sum_chart.destroy();
+                        }
+
+                        comment_company_monthly_sum_chart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                datasets: JSON.parse(data)
+                            },
+
+
+                            options: {
+
+                                // plugins: {
+                                //     colorschemes: {
+                                //         scheme: 'brewer.Paired12'
+                                //     }
+                                // },
+
+                                scales: {
+                                    xAxes: [{
+                                        type: 'time'
+                                    }]
+                                },
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                legend: {
+                                    display: false,
+                                },
+                                title: {
+                                    display: false,
+                                    text: 'Mentions'
+                                }
+                            }
+                        });
+
+                    }
+                });
+
+            }
+
+            CommentCompanyMonthlySumChart();
+
+
+
+
+
+
+
+            function CommentAggChart(search) {
+                var $CommentAggChart = $("#comment_agg-chart");
+                $.ajax({
+                    data: { "form_results": FormResults()},
+                    url: $CommentAggChart.data("url"),
+                    success: function (d) {
+                    
+                        var ctx = $CommentAggChart[0].getContext('2d');
+
+                        if (window.hasOwnProperty("comment_agg")) {
+                            comment_agg.destroy();
+                        }
+
+                        comment_agg = new Chart(ctx, {
+                            type: 'horizontalBar',
+                            
+                            
+                            
+
+                            data: {
+                                labels: JSON.parse(d).labels,
+                                datasets: [{
+                                    label: '# of mentions',
+                                    data: JSON.parse(d).data,
+                                    backgroundColor: Colors.slice(0, JSON.parse(d).labels.length - 1)
+                                
+                                }]
+                            },
+
+                            options: {
+
+                                // plugins: {
+                                //     colorschemes: {
+                                //         scheme: 'brewer.Paired12'
+                                //     }
+                                // },
+
+
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                legend: {
+                                    display: false,
+                                },
+                                title: {
+                                    display: false
+                                }
+                            }
+                        });
+
+                    }
+                });
+
+            }
+
+
+            CommentAggChart()
+
+
+            function DoljoblistingCompanyMonthlySumChart(search) {
+                var $DoljoblistingCompanyMonthlySumChart = $("#doljoblisting_company_monthly_sum_chart");
+                $.ajax({
+                    url: $DoljoblistingCompanyMonthlySumChart.data("url"),
+                    data: { "form_results": FormResults()},
+                    success: function (data) {
+
+                        
+
+                        var ctx = $DoljoblistingCompanyMonthlySumChart[0].getContext('2d');
+
+                        if (window.hasOwnProperty("doljoblisting_company_monthly_sum_chart")) {
+                            doljoblisting_company_monthly_sum_chart.destroy();
+                        }
+
+                        doljoblisting_company_monthly_sum_chart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                datasets: JSON.parse(data)
+                            },
+
+
+                            options: {
+
+                                // plugins: {
+                                //     colorschemes: {
+                                //         scheme: 'brewer.Paired12'
+                                //     }
+                                // },
+
+                                scales: {
+                                    xAxes: [{
+                                        type: 'time'
+                                    }]
+                                },
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                legend: {
+                                    display: false,
+                                },
+                                title: {
+                                    display: false,
+                                    text: 'Dev Data'
+                                }
+                            }
+                        });
+
+                    }
+                });
+
+            }
+
+            DoljoblistingCompanyMonthlySumChart();
+
+                //doljoblisting chart creation function #doljoblisting_agg-chart
+
+
+                function DolJobListingAggChart(search) {
+                var $DolJobListingAggChart = $("#doljoblisting_agg-chart");
+                $.ajax({
+                    data: { "form_results": FormResults()},
+                    url: $DolJobListingAggChart.data("url"),
+                    success: function (d) {
+
+                        var ctx = $DolJobListingAggChart[0].getContext('2d');
+
+                        if (window.hasOwnProperty("doljoblisting_agg")) {
+                            doljoblisting_agg.destroy();
+                        }
+
+                        doljoblisting_agg = new Chart(ctx, {
+                            type: 'horizontalBar',
+                            
+                            
+
+
+                            data: {
+                                labels: JSON.parse(d).labels,
+                                datasets: [{
+                                    label: '# of jobs filled',
+                                    data: JSON.parse(d).data,
+                                    backgroundColor: Colors.slice(0, JSON.parse(d).labels.length - 1)
+                                
+                                }]
+                            },
+
+                            options: {
+
+                                // plugins: {
+                                //     colorschemes: {
+                                //         scheme: 'brewer.Paired12'
+                                //     }
+                                // },
+
+
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                legend: {
+                                    display: false,
+                                },
+                                title: {
+                                    display: false
+                                }
+                            }
+                        });
+
+                    }
+                });
+
+            }
+
+
+                DolJobListingAggChart()
+
+
+
+
+
+
+                function DevDataHottestTagsChart(search) {
+                var $DevDataHottestTagsChart = $("#dev-data-hottest-tags-chart");
+                $.ajax({
+                    data: { "form_results": FormResults()},
+                    url: $DevDataHottestTagsChart.data("url"),
+                    success: function (d) {
+                        var background_colors = []
+                        
+                        for(i=0;i<JSON.parse(d).data.length;i++){
+                            if (JSON.parse(d).data[i] > 0 ) {
+                            //You can check for bars[i].value and put your conditions here
+                            background_colors.push("green")
+                            }
+                            else {
+                                background_colors.push("red")
+                            }
+                        }
+
+                        var ctx = $DevDataHottestTagsChart[0].getContext('2d');
+
+                        if (window.hasOwnProperty("devdatahottesttags_agg")) {
+                            devdatahottesttags_agg.destroy();
+                        }
+
+                        devdatahottesttags_agg = new Chart(ctx, {
+                            type: 'horizontalBar',
+                            
+                            
+
+
+                            data: {
+                                labels: JSON.parse(d).labels,
+                                datasets: [{
+                                    label: '% Change',
+                                    data: JSON.parse(d).data,
+                                    backgroundColor: background_colors
+                                
+                                }]
+                            },
+
+
+
+
+                            options: {
+                                tooltips: {
+                            callbacks: {
+                                label: function(tooltipItem, data) {
+                                    return (tooltipItem.value * 100).toFixed(1) + "%";
+                                }
+                            }
+                        },
+
+
+                                plugins: {
+                                    colorschemes: {
+                                        scheme: 'brewer.Paired12'
+                                    }
+                                },
+
+
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                legend: {
+                                    display: false,
+                                },
+                                title: {
+                                    display: false
+                                }
+                            }
+                        });
+
+                    }
+                });
+
+            }
+
+
+                DevDataHottestTagsChart()
+                
+
+            $("#search_form").on('submit', function(event){
+                       event.preventDefault();
+
+                       
+                       if ( $("#search_form input").val() && $("#search_form input").val() !='' ) {
+                        
+                        comment_table
+                            .columns( 2 )
+                            .search($("#search_form input").val())
+                            .draw();
+                            
+                                        
+
+                        job_table
+                            .columns( 2 )
+                            .search($("#search_form input").val())
+                            .draw();
+                            
+                    }
+
+                    else {
+
+                        
+                        comment_table
+                            .search('')
+                            .columns().search( '' )
+                            .draw();
+                            
+                                        
+
+                        job_table
+                            .search('')
+                            .columns().search( '' )
+                            .draw();
+                    }
+
+                        // $('#company_table').DataTable().ajax.reload();
+
+                        CommentAggChart();
+
+                        DolJobListingAggChart();
+
+                        DevDataChart();
+
+                        DoljoblistingCompanyMonthlySumChart();
+
+                        CommentCompanyMonthlySumChart();
+
+
+
+                });
+
+                    
+                $("#company_filter_form").on('change', function () {
+
+                    if ($("#search_form input").val()) {
+                        
+                        comment_table
+                            .search($("#search_form input").val())
+                            .draw();
+                            
+                                        
+
+                        job_table
+                            .search($("#search_form input").val())
+                            .draw();
+                            
+                    }
+
+                    else {
+                        comment_table
+                            .search('')
+                            .draw();
+                            
+                                        
+
+                        job_table
+                            .search('')
+                            .draw();
+                    }
+
+                    $('#company_table').DataTable().ajax.reload();
+
+                    CommentAggChart();
+
+                    DolJobListingAggChart();
+
+                    DevDataChart();
+
+                    DoljoblistingCompanyMonthlySumChart();
+
+                    CommentCompanyMonthlySumChart();
+
+                });
+
+                $("#sector_filter_form").on('change', function () {
+
+                    
+                    if ($("#search_form input").val()) {
+                        
+                        comment_table
+                            .search($("#search_form input").val())
+                            .draw();
+                            
+                                        
+
+                        job_table
+                            .search($("#search_form input").val())
+                            .draw();
+                            
+                    }
+
+                    else {
+                        comment_table
+                            .search('')
+                            .draw();
+                            
+                                        
+
+                        job_table
+                            .search('')
+                            .draw();
+                    }
+
+                    $('#job_table').DataTable().ajax.reload();
+
+                    $('#comment_table').DataTable().ajax.reload();
+
+                    $('#company_table').DataTable().ajax.reload();
+
+                    $('#comment_table').DataTable().ajax.reload();
+
+                    CommentAggChart();
+
+                    DolJobListingAggChart();
+                    
+                    DevDataChart();
+
+                    DoljoblistingCompanyMonthlySumChart();
+
+                    CommentCompanyMonthlySumChart();
+
+
+                });
+
+                $("#tech_vs_non_tech_filter_form").on('change', function () {
+
+                    if ($("#search_form input").val()) {
+                        
+                    comment_table
+                            .search($("#search_form input").val())
+                            .draw();
+                            
+                                        
+
+                        job_table
+                            .search($("#search_form input").val())
+                            .draw();
+                            
+                    }
+
+                    else {
+                        comment_table
+                            .search('')
+                            .draw();
+                            
+                                        
+
+                        job_table
+                            .search('')
+                            .draw();
+                    }
+
+                    $('#company_table').DataTable().ajax.reload();
+
+                    CommentAggChart();
+
+                    DolJobListingAggChart();
+                    
+                    DevDataChart();
+
+                    DoljoblistingCompanyMonthlySumChart();
+
+                    CommentCompanyMonthlySumChart();
+
+
+                });
+
+                
+
+
+                $("#topic_filter_form").on('change', function () {
+
+                    if ($("#search_form input").val()) {
+                        
+                        comment_table
+                            .search($("#search_form input").val())
+                            .draw();
+                            
+                                        
+
+                        job_table
+                            .search($("#search_form input").val())
+                            .draw();
+                            
+                    }
+
+                    else {
+                        comment_table
+                            .search('')
+                            .draw();
+                            
+                                        
+
+                        job_table
+                            .search('')
+                            .draw();
+                    }
+
+                    $('#company_table').DataTable().ajax.reload();
+
+
+                    CommentAggChart();
+
+                    DolJobListingAggChart();
+                    
+                    DevDataChart();
+
+                    DoljoblistingCompanyMonthlySumChart();
+
+                    CommentCompanyMonthlySumChart();
+
+                });
+
+
+                $("#source_filter_form").on('change', function () {
+
+
+                    if ($("#search_form input").val()) {
+                        
+                        comment_table
+                            .search($("#search_form input").val())
+                            .draw();
+                            
+                                        
+
+                        job_table
+                            .search($("#search_form input").val())
+                            .draw();
+                            
+                    }
+
+                    else {
+                        comment_table
+                            .search('')
+                            .draw();
+                            
+                                        
+
+                        job_table
+                            .search('')
+                            .draw();
+                    }
+
+
+
+
+                    CommentAggChart();
+
+                    CommentCompanyMonthlySumChart();
+
+                    });
+                
+
+
+
+
+                    $("#id_start_date").on('change', function () {
+
+
+                if ($("#search_form input").val()) {
+                    
+                    comment_table
+                        .search($("#search_form input").val())
+                        .draw();
+                        
+                                    
+
+                    job_table
+                        .search($("#search_form input").val())
+                        .draw();
+                        
+                }
+
+                else {
+                    comment_table
+                        .search('')
+                        .draw();
+                        
+                                    
+
+                    job_table
+                        .search('')
+                        .draw();
+                }
+
+
+
+
+                CommentAggChart();
+
+                DolJobListingAggChart();
+
+                DevDataChart();
+
+                DoljoblistingCompanyMonthlySumChart();
+
+                CommentCompanyMonthlySumChart();
+
+                });
+
+
+                $("#id_end_date").on('change', function () {
+
+                                    
+
+
+                if ($("#search_form input").val()) {
+                    
+                    comment_table
+                        .search($("#search_form input").val())
+                        .draw();
+                        
+                                    
+
+                    job_table
+                        .search($("#search_form input").val())
+                        .draw();
+                        
+                }
+
+                else {
+                    comment_table
+                        .search('')
+                        .draw();
+                        
+                                    
+
+                    job_table
+                        .search('')
+                        .draw();
+                }
+
+
+
+
+
+                CommentAggChart();
+
+                DolJobListingAggChart();
+
+                DevDataChart();
+
+                DoljoblistingCompanyMonthlySumChart();
+
+                CommentCompanyMonthlySumChart();
+
+                });
+
+
+                $("#vector_filter_form").on('change', function () {
+
+
+
+                if ($("#search_form input").val()) {
+
+                    comment_table
+                        .search($("#search_form input").val())
+                        .draw();
+
+
+
+                    job_table
+                        .search($("#search_form input").val())
+                        .draw();
+
+                }
+
+                else {
+                    comment_table
+                        .search('')
+                        .draw();
+
+
+
+                    job_table
+                        .search('')
+                        .draw();
+                }
+
+                });
+
+                $('#id_tech_vs_non_tech_filter_form').select2();
+
+                $('#id_sector_filter_form').select2();
+
+                $('#id_topic_filter_form').select2();
+
+                $('#id_company_filter_form').select2();
+
+                $('#id_source_filter_form').select2();
+
+                $('#id_vector_filter_form').select2();
+
+
+                //////
+                //SERIALIZE FORM DATA AND SEND IT BACK TO THE VIEW
+                //////
+                
+                function FormResults() { form_items = {'selected_topics': $("#id_topic_filter_form").serialize(), 'selected_companies' : $("#company_filter_form").serialize(), 'selected_sources' : $("#id_source_filter_form").serialize(), 'selected_vectors' : $("#id_vector_filter_form").serialize(), 'selected_sectors' : $("#sector_filter_form").serialize(), 'selected_tech_vs_non_techs' : $("#id_tech_vs_non_tech_filter_form").serialize(), 'search_form' : $("#id_search_form").val(), 'start_date' : $("#id_start_date").val(), 'end_date' : $("#id_end_date").val() }
+
+                return form_items
+                }  
+
+
+       
+
+
+        });
+
+
+
+
+        $(function () {
+            
+
+
+            //-----------
+            //DATE PICKER
+            //-----------
+
+
+
+          $("#id_start_date").datepicker({
+            format:'yyyy-mm-dd',
+          });
+
+          $("#id_end_date").datepicker({
+            format:'yyyy-mm-dd',
+          });
+
+        })
+</script>
+
+
+
+
+
+
+
+</body>
+
+</html>

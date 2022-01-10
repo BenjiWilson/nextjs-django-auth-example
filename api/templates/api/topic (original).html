@@ -1,0 +1,1747 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ATC Capital Partners - Manifest</title>
+
+    <!-- Custom fonts for this template-->
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" type="text/css">
+
+    <link href="{% static 'vendor/datatables/RowGroup-1.1.2/css/rowGroup.dataTables.min.css' %}" rel="stylesheet"
+        type="text/css">
+
+
+
+    <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+
+    <style>
+
+        .select2-selection  {
+          width: 100% !important;
+            }
+        
+        .chart-area {
+            height: 58vh !important;
+        }
+
+
+        .card {
+            height: 100%
+        }
+
+        .card-body {
+            padding: 0.5rem;
+            padding-top: 0rem;
+            padding-right: 0rem;
+            margin:0.75em
+        }
+
+        .topbar {
+            height: 3.475rem
+        }
+
+        td {
+            word-wrap: break-word;
+            font-size: 0.7rem;
+            overflow: hidden;
+            max-height: 50px
+        }
+
+        th {
+            word-wrap: break-word;
+            font-size: 0.75rem;
+        }
+
+
+        .neg-margin-header {
+            margin-bottom: -3.1em;
+        }
+
+        #articles {
+            table-layout: fixed;
+            width: 100% !important;
+        }
+
+        #articles td,
+        #articles th {
+            width: auto !important;
+            white-space: normal;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        #dev-data-chart {
+            margin: auto;
+
+        }
+
+        body {
+            font-size: 0.7rem;
+            font-family: Salesforce Sans, -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica, helvetica neue, ubuntu, roboto, noto, segoe ui, arial, sans-serif
+        }
+
+
+        .border-top-primary {
+            border-top: 0.25rem solid #118AB2 !important;
+        }
+
+        .border-left-secondary {
+            border-left: 0.25rem solid #858796 !important;
+        }
+
+        .border-top-secondary {
+            border-top: 0.25rem solid #858796 !important;
+        }
+
+        .border-left-success {
+            border-left: 0.25rem solid #1cc88a !important;
+        }
+
+        .border-top-success {
+            border-top: 0.25rem solid #1cc88a !important;
+        }
+
+        .border-left-info {
+            border-left: 0.25rem solid #36b9cc !important;
+        }
+
+        .border-top-info {
+            border-top: 0.25rem solid #36b9cc !important;
+        }
+
+        .border-left-warning {
+            border-left: 0.25rem solid #f6c23e !important;
+        }
+
+        .border-top-warning {
+            border-top: 0.25rem solid #f6c23e !important;
+        }
+
+        .border-left-danger {
+            border-left: 0.25rem solid #e74a3b !important;
+        }
+
+        .border-top-danger {
+            border-top: 0.25rem solid #e74a3b !important;
+        }
+
+        .border-left-light {
+            border-left: 0.25rem solid #f8f9fc !important;
+        }
+
+        .border-top-light {
+            border-top: 0.25rem solid #f8f9fc !important;
+        }
+
+        .border-left-dark {
+            border-left: 0.25rem solid #5a5c69 !important;
+        }
+
+        .border-top-dark {
+            border-top: 0.25rem solid #5a5c69 !important;
+        }
+
+        .bg-gradient-gray {
+            background-color: #8A8A8A;
+            background-image: linear-gradient(180deg, #908386 10%, #8A8A8A 100%);
+            background-size: cover;
+        }
+
+        .table th {
+            padding: .5rem;
+            vertical-align: top;
+            border-top: 1px solid #e3e6f0;
+        }
+
+        .sidebar.toggled {
+            overflow: visible;
+            width: 8rem !important;
+        }
+
+        td {
+            word-break: break-word;
+            vertical-align: top;
+            overflow-x: hidden;
+        }
+
+        #comment_table {
+            table-layout: fixed;
+            overflow-x: hidden;
+        }
+
+        #data_wrapper.dataTables_wrapper {
+            overflow-x: hidden;
+            background-color: #F1F1F1 !important;
+        }
+
+        #data_wrapper .fg-toolbar.ui-toolbar.ui-widget-header.ui-helper-clearfix.ui-corner-bl.ui-corner-br {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+
+        div.dataTables_wrapper {
+            overflow-x: hidden;
+        }
+
+        .dataTables_scrollBody {
+            overflow-x: hidden !important;
+        }
+
+        .row {
+            margin-bottom: 1em
+        }
+
+        .big-row {
+            height: 70vh;
+            margin-bottom: 2.5em
+        }
+
+
+        .text-black-50 {
+            color: rgba(0, 0, 0, 0.5) !important;
+        }
+
+        .mini-card {
+            padding: 0.1rem 1rem !important
+        }
+
+        .mini-row {
+            margin-bottom: 3px !important
+        }
+
+
+        .text-primary {
+            color: #118AB2 !important
+        }
+
+        .text-secondary {
+            color: #118AB2 !important
+        }
+
+
+        .border-left-primary {
+            border-left: .25rem solid #118AB2 !important
+        }
+
+        .border-all-primary {
+            border: .15rem solid #118AB2 !important
+        }
+
+        .border-all-primary-thick {
+            border: .25rem solid #118AB2 !important
+        }
+
+        .border-right-primary {
+            border-right: .25rem solid #118AB2 !important
+        }
+
+
+
+        a.bg-primary:hover,
+        a.bg-primary:focus,
+        button.bg-primary:hover,
+        button.bg-primary:focus {
+            background-color: #2653d4 !important;
+        }
+
+        .bg-secondary {
+            background-color: #858796 !important;
+        }
+
+
+        .bg-primary {
+            background-color: #118AB2 !important
+        }
+
+
+        a.bg-secondary:hover,
+        a.bg-secondary:focus,
+        button.bg-secondary:hover,
+        button.bg-secondary:focus {
+            background-color: #6b6d7d !important;
+        }
+
+        .bg-success {
+            background-color: #1cc88a !important;
+        }
+
+        a.bg-success:hover,
+        a.bg-success:focus,
+        button.bg-success:hover,
+        button.bg-success:focus {
+            background-color: #169b6b !important;
+        }
+
+        .bg-info {
+            background-color: #36b9cc !important;
+        }
+
+        a.bg-info:hover,
+        a.bg-info:focus,
+        button.bg-info:hover,
+        button.bg-info:focus {
+            background-color: #2a96a5 !important;
+        }
+
+        .bg-warning {
+            background-color: #f6c23e !important;
+        }
+
+        a.bg-warning:hover,
+        a.bg-warning:focus,
+        button.bg-warning:hover,
+        button.bg-warning:focus {
+            background-color: #f4b30d !important;
+        }
+
+        .bg-danger {
+            background-color: #e74a3b !important;
+        }
+
+        a.bg-danger:hover,
+        a.bg-danger:focus,
+        button.bg-danger:hover,
+        button.bg-danger:focus {
+            background-color: #d52a1a !important;
+        }
+
+        .bg-light {
+            background-color: #f8f9fc !important;
+        }
+
+        a.bg-light:hover,
+        a.bg-light:focus,
+        button.bg-light:hover,
+        button.bg-light:focus {
+            background-color: #d4daed !important;
+        }
+
+        .bg-dark {
+            background-color: #5a5c69 !important;
+        }
+
+        a.bg-dark:hover,
+        a.bg-dark:focus,
+        button.bg-dark:hover,
+        button.bg-dark:focus {
+            background-color: #42444e !important;
+        }
+
+        .border-bottom-primary {
+            border-bottom: 0.25rem solid #118AB2 !important;
+        }
+
+        .border-left-secondary {
+            border-left: 0.25rem solid #118AB2 !important;
+        }
+
+        .border-bottom-secondary {
+            border-bottom: 0.25rem solid #118AB2 !important;
+        }
+
+        .border-left-success {
+            border-left: 0.25rem solid #1cc88a !important;
+        }
+
+        .border-bottom-success {
+            border-bottom: 0.25rem solid #1cc88a !important;
+        }
+
+        .border-left-info {
+            border-left: 0.25rem solid #36b9cc !important;
+        }
+
+        .border-bottom-info {
+            border-bottom: 0.25rem solid #36b9cc !important;
+        }
+
+        .border-left-warning {
+            border-left: 0.25rem solid #f6c23e !important;
+        }
+
+        .border-bottom-warning {
+            border-bottom: 0.25rem solid #f6c23e !important;
+        }
+
+        .border-left-danger {
+            border-left: 0.25rem solid #e74a3b !important;
+        }
+
+        .border-bottom-danger {
+            border-bottom: 0.25rem solid #e74a3b !important;
+        }
+
+        .border-left-light {
+            border-left: 0.25rem solid #f8f9fc !important;
+        }
+
+        .border-bottom-light {
+            border-bottom: 0.25rem solid #f8f9fc !important;
+        }
+
+        .border-left-dark {
+            border-left: 0.25rem solid #5a5c69 !important;
+        }
+
+        .border-bottom-dark {
+            border-bottom: 0.25rem solid #5a5c69 !important;
+        }
+
+        a.bg-primary:hover,
+        a.bg-primary:focus,
+        button.bg-primary:hover,
+        button.bg-primary:focus {
+            background-color: #2653d4 !important;
+        }
+
+        .bg-secondary {
+            background-color: #858796 !important;
+        }
+
+        a.bg-secondary:hover,
+        a.bg-secondary:focus,
+        button.bg-secondary:hover,
+        button.bg-secondary:focus {
+            background-color: #6b6d7d !important;
+        }
+
+        .bg-success {
+            background-color: #1cc88a !important;
+        }
+
+        a.bg-success:hover,
+        a.bg-success:focus,
+        button.bg-success:hover,
+        button.bg-success:focus {
+            background-color: #169b6b !important;
+        }
+
+        .bg-info {
+            background-color: #36b9cc !important;
+        }
+
+        a.bg-info:hover,
+        a.bg-info:focus,
+        button.bg-info:hover,
+        button.bg-info:focus {
+            background-color: #2a96a5 !important;
+        }
+
+        .bg-warning {
+            background-color: #f6c23e !important;
+        }
+
+        a.bg-warning:hover,
+        a.bg-warning:focus,
+        button.bg-warning:hover,
+        button.bg-warning:focus {
+            background-color: #f4b30d !important;
+        }
+
+        .bg-danger {
+            background-color: #e74a3b !important;
+        }
+
+        a.bg-danger:hover,
+        a.bg-danger:focus,
+        button.bg-danger:hover,
+        button.bg-danger:focus {
+            background-color: #d52a1a !important;
+        }
+
+        .bg-light {
+            background-color: #f8f9fc !important;
+        }
+
+        a.bg-light:hover,
+        a.bg-light:focus,
+        button.bg-light:hover,
+        button.bg-light:focus {
+            background-color: #d4daed !important;
+        }
+
+        .bg-dark {
+            background-color: #5a5c69 !important;
+        }
+
+        a.bg-dark:hover,
+        a.bg-dark:focus,
+        button.bg-dark:hover,
+        button.bg-dark:focus {
+            background-color: #42444e !important;
+        }
+
+         !important;
+        }
+
+        a.bg-primary:hover,
+        a.bg-primary:focus,
+        button.bg-primary:hover,
+        button.bg-primary:focus {
+            background-color: #2653d4 !important;
+        }
+
+        .bg-secondary {
+            background-color: #858796 !important;
+        }
+
+        a.bg-secondary:hover,
+        a.bg-secondary:focus,
+        button.bg-secondary:hover,
+        button.bg-secondary:focus {
+            background-color: #6b6d7d !important;
+        }
+
+        .bg-success {
+            background-color: #1cc88a !important;
+        }
+
+        a.bg-success:hover,
+        a.bg-success:focus,
+        button.bg-success:hover,
+        button.bg-success:focus {
+            background-color: #169b6b !important;
+        }
+
+        .bg-info {
+            background-color: #36b9cc !important;
+        }
+
+        a.bg-info:hover,
+        a.bg-info:focus,
+        button.bg-info:hover,
+        button.bg-info:focus {
+            background-color: #2a96a5 !important;
+        }
+
+        .bg-warning {
+            background-color: #f6c23e !important;
+        }
+
+        a.bg-warning:hover,
+        a.bg-warning:focus,
+        button.bg-warning:hover,
+        button.bg-warning:focus {
+            background-color: #f4b30d !important;
+        }
+
+        .bg-danger {
+            background-color: #e74a3b !important;
+        }
+
+        a.bg-danger:hover,
+        a.bg-danger:focus,
+        button.bg-danger:hover,
+        button.bg-danger:focus {
+            background-color: #d52a1a !important;
+        }
+
+        .bg-light {
+            background-color: #f8f9fc !important;
+        }
+
+        a.bg-light:hover,
+        a.bg-light:focus,
+        button.bg-light:hover,
+        button.bg-light:focus {
+            background-color: #d4daed !important;
+        }
+
+        .bg-dark {
+            background-color: #5a5c69 !important;
+        }
+
+        a.bg-dark:hover,
+        a.bg-dark:focus,
+        button.bg-dark:hover,
+        button.bg-dark:focus {
+            background-color: #42444e !important;
+        }
+
+        .container,
+        .container-fluid,
+        .container-lg,
+        .container-md,
+        .container-sm,
+        .container-xl {
+            padding-left: 1rem;
+            padding-right: 1.5em;
+        }
+
+
+        .card-header {
+            padding: .75rem .75rem;
+            border-bottom: 0px
+        }
+
+
+        .source_filter_holder {
+            max-height: 20px;
+            width: 100%;
+            padding-right: 0px
+        }
+
+        label {
+            margin-bottom: .2rem
+        }
+
+        label[for="id_source_select_form"] {
+            display: none;
+        }
+
+        label[for="id_company_select_form"] {
+            margin-right: 10px;
+            margin-bottom: 0px;
+            margin-top: 5px;
+            color: #118AB2 !important;
+            font-weight: bold
+        }
+
+        label[for="id_topic_select_form"] {
+            margin-right: 10px;
+            margin-bottom: 0px;
+            margin-top: 5px;
+            color: #118AB2 !important;
+            font-weight: bold
+        }
+
+        label[for="id_sector_filter_form"] {
+            margin-right: 10px;
+            margin-bottom: 0px;
+            margin-top: 5px;
+            color: #118AB2 !important;
+            font-weight: bold
+        }
+
+
+        .source_select_column {
+            padding-right: 0px;
+            padding-top: 1px !important;
+            padding-bottom: 1px !important;
+        }
+
+
+        .dataTables_wrapper label {
+            float: right;
+            margin-right: 1em
+        }
+
+
+
+
+        .select2 {
+            min-height: 20px;
+            margin-top: 0;
+
+        }
+
+        #comment_table td {
+            overflow-wrap: break-word;
+        }
+
+        .select2-selection__rendered {
+            line-height: 18px !important;
+        }
+
+        .select2-container .select2-selection--single {
+            height: 20px !important;
+        }
+
+        .select2-selection__arrow {
+            height: 19px !important;
+        }
+
+
+        .select2-selection {
+            line-height: 18px !important;
+            height: 22px !important;
+            min-height: 22px !important;
+        }
+
+        .select2-search__field {
+            margin-top: 0px !important;
+        }
+
+        .select2-selection__choice {
+            margin-top: 0px !important;
+        }
+
+        .col,
+        .col-1,
+        .col-10,
+        .col-11,
+        .col-12,
+        .col-2,
+        .col-3,
+        .col-4,
+        .col-5,
+        .col-6,
+        .col-7,
+        .col-8,
+        .col-9,
+        .col-auto,
+        .col-lg,
+        .col-lg-1,
+        .col-lg-10,
+        .col-lg-11,
+        .col-lg-12,
+        .col-lg-2,
+        .col-lg-3,
+        .col-lg-4,
+        .col-lg-5,
+        .col-lg-6,
+        .col-lg-7,
+        .col-lg-8,
+        .col-lg-9,
+        .col-lg-auto,
+        .col-md,
+        .col-md-1,
+        .col-md-10,
+        .col-md-11,
+        .col-md-12,
+        .col-md-2,
+        .col-md-3,
+        .col-md-4,
+        .col-md-5,
+        .col-md-6,
+        .col-md-7,
+        .col-md-8,
+        .col-md-9,
+        .col-md-auto,
+        .col-sm,
+        .col-sm-1,
+        .col-sm-10,
+        .col-sm-11,
+        .col-sm-12,
+        .col-sm-2,
+        .col-sm-3,
+        .col-sm-4,
+        .col-sm-5,
+        .col-sm-6,
+        .col-sm-7,
+        .col-sm-8,
+        .col-sm-9,
+        .col-sm-auto,
+        .col-xl,
+        .col-xl-1,
+        .col-xl-10,
+        .col-xl-11,
+        .col-xl-12,
+        .col-xl-2,
+        .col-xl-3,
+        .col-xl-4,
+        .col-xl-5,
+        .col-xl-6,
+        .col-xl-7,
+        .col-xl-8,
+        .col-xl-9,
+        .col-xl-auto {
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+        }
+
+        div.dataTables_wrapper div.dataTables_paginate {
+            margin: 10px;
+        }
+
+
+        img{
+    width:100%;
+    max-width:600px !important;
+        }
+
+
+    </style>
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+    
+        
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- Page Heading -->
+                    <div class="row mini-row" style="width:100%;padding:0.5em; color:#42444e">
+                       <strong> &#9654;ATC&#9664; Capital Partners</strong>
+                    </div>
+                    
+                    <div class="d-sm-flex align-items-center justify-content-between mb-1 py-1 px-2 mt-1 ml-2 static-top bg-light"
+                        style="margin-left: -1.0em !important;">
+
+
+                        <div class="row" style="width:100%">
+                            <div class="col-xl-3 col-lg-3">
+                                <!-- Foundational Tech Readiness Card -->
+                                <div class="card border-all-primary-thick    py-1">
+                                    <div class="card-body mini-card">
+                                        <div class="row no-gutters align-items-center mini-row">
+                                            <div class="col mr-2">
+                                                <div
+                                                    class="text-xs font-weight-bold  text-uppercase mb-1 text-primary ">
+                                                    Tech Readiness
+                                                </div>
+                                                <div class="row no-gutters align-items-center">
+
+                                                    <div class="col">
+                                                        <div class="progress progress-sm mr-2">
+                                                            <div class="progress-bar bg-primary" role="progressbar"
+                                                                style="width: 30%" aria-valuenow="30" aria-valuemin="0"
+                                                                aria-valuemax="100">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                            <!-- Application Development Card -->
+                            <div class="col-xl-3 col-lg-3">
+                                <div class="card border-top-success shadow  py-1">
+                                    <div class="card-body mini-card">
+                                        <div class="row no-gutters align-items-center mini-row">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Application Development</div>
+                                                <div class="row no-gutters align-items-center">
+
+                                                    <div class="col">
+                                                        <div class="progress progress-sm mr-2 bg-light">
+                                                            <div class="progress-bar bg-success" role="progressbar"
+                                                                style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-lg-3">
+
+                                <!-- Market Adoption Card -->
+
+                                <div class="card border-top-info shadow  py-1">
+                                    <div class="card-body mini-card">
+                                        <div class="row no-gutters align-items-center mini-row">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    Market
+                                                    Adoption
+                                                </div>
+                                                <div class="row no-gutters align-items-center">
+
+                                                    <div class="col">
+                                                        <div class="progress progress-sm mr-2">
+                                                            <div class="progress-bar bg-info" role="progressbar"
+                                                                style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-lg-3">
+                                <!-- Supporting Ecosystem Card -->
+                                <div class="card border-top-warning shadow  py-1">
+                                    <div class="card-body mini-card">
+                                        <div class="row no-gutters align-items-center mini-row">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                    Supporting Ecosystem</div>
+                                                <div class="row no-gutters align-items-center">
+
+                                                    <div class="col">
+                                                        <div class="progress progress-sm mr-2">
+                                                            <div class="progress-bar bg-warning" role="progressbar"
+                                                                style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                                aria-valuemax="100"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="d-none d-sm-inline-block btn btn-sm btn-dark shadow-sm">
+                                    <i
+                                    class="fas fa-download fa-sm text-white-50"></i> Generate Report 
+                                    </div>
+                                    <div class="d-none d-sm-inline-block btn btn-sm">
+                                    <form
+                                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                    
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                            aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-dark" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form></div> -->
+
+                    </div>
+
+                    <!-- Content Row -->
+
+            
+
+                    <div class="row">
+
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="card shadow mb-1 border-all-primary"
+                                style="flex-direction: row; min-height:6.5vh;">
+
+
+                                <div class="col-xl-3 col-lg-3" style="margin: auto 0px;">
+                                    <form id="topic_select_form">
+
+                                        <!-- {% csrf_token %} -->
+                                        {{ topic_filter_form }}
+                                    </form>
+
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4" style="margin: auto 0px;">
+                                    <form id="sector_select_form">
+
+                                        <!-- {% csrf_token %} -->
+                                        {{ sector_filter_form }}
+                                    </form>
+
+                                </div>
+
+
+
+                                <div class="col-xl-5 col-lg-5" style="margin: auto 0px;">
+                                    <form id="company_select_form">
+
+                                        <!-- {% csrf_token %} -->
+                                        {{ company_filter_form }}
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Content Row -->
+                    <div class="row big-row">
+                        <div class="col-xl-7 col-lg-7">
+
+                            <!-- Feed Content -->
+                            <div class="card shadow border-all-primary mt-1">
+
+                                <div class="card-header neg-margin-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">Automation Discussion Activity Feed</h6>
+
+                                </div>
+                                <div class="card-body" id="comment_table_holder">
+
+                                    <!-- #comment_table table-->
+
+                                    <table id="comment_table" class="table table-striped table-bordered wrap">
+
+                                        <thead>
+                                            <tr>
+                                                <th data-data="id">id</th>
+                                                <th data-data="posted_date">Date</th>
+                                                <th data-data="content_summary">Content</th>
+                                                <th data-data="source">Source</th>
+                                                <th data-data="username">Username</th>
+                                                <th data-data="companies__company">Companies</th>
+                                                <th data-data="consolidatedsearchparam">Terms</th>
+                                            </tr>
+                                        </thead>
+
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--H1-B Data-->
+                        <div class="col-xl-5 col-lg-5 ">
+                            <div class="card shadow border-all-primary mt-1">
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">Activity By Company</h6>
+
+                                </div>
+                                <div class="card-body" id="data_holder">
+
+
+
+
+                                    <div style="position: relative; ">
+                                        <div class="chart-area" style="position: relative;">
+                                            <canvas id="comment_agg-chart" data-url="{% url 'comment_agg' %}"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row big-row">
+                        <div class="col-xl-7 col-lg-7">
+                            <div class="card shadow border-all-primary mt-1">
+                                <div class="card-header neg-margin-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">H1-B Automation Job Activity</h6>
+
+                                </div>
+                                <div class="card-body" id="job_table_holder">
+
+                                    <!-- #jobs data table-->
+
+                                    <table id="job_table" class="table table-striped table-bordered wrap">
+
+                                        <thead>
+                                            <tr>
+                                                <th data-data="CASE_SUBMITTED">Date</th>
+                                                <th data-data="JOB_TITLE">Job Title</th>
+                                                <th data-data="EMPLOYER_NAME">Employer Name</th>
+                                                <th data-data="WAGE_RATE_OF_PAY_FROM">Wage Min.</th>
+                                                <th data-data="companies__company">Related Companies</th>
+                                            </tr>
+                                        </thead>
+
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Jobs Data-->
+                        <div class="col-xl-5 col-lg-5 ">
+                            <div class="card shadow border-all-primary mt-1">
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">H1-B Job Activity By Company</h6>
+
+                                </div>
+                                <div class="card-body" id="data_holder">
+
+
+
+
+                                    <div style="position: relative; height:59.5vh;  overflow: scroll">
+                                        <div class="chart-area" style="position: relative; height:451.5vh;">
+                                            <canvas id="doljoblisting_agg-chart"
+                                            data-url="{% url 'doljoblisting_agg'  %}"></canvas>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     
+                    <div class="row big-row">
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="card shadow border-all-primary mt-1">
+
+                                <div class="card-header neg-margin-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">Companies Tracked for Automation Activity</h6>
+
+                                </div>
+                                <div class="card-body">
+                                    <div id="company_table_holder">
+                                        <table id="company_table" class="table table-striped table-bordered wrap">
+                                            <thead>
+                                                <tr>
+                                                    <th data-data="company">Company</th>
+                                                    <th data-data="ownership">Ownership</th>
+                                                    <th data-data="url">Url</th>
+                                                    <th data-data="focus_vertical">Focus/Vertical</th>
+                                                    <th data-data="ml_notes">ML Notes</th>
+
+                                        
+
+
+                                                   
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+
+                    <div class="row big-row">
+                  
+
+                        <div class="col-xl-12 col-lg-12 ">
+                            <div class="card shadow border-all-primary mt-1">
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">Developer Automation Technology Usage Data</h6>
+
+                                </div>
+                                <div class="card-body" id="data_holder">
+
+
+
+
+
+                                    <div class="chart-area" style="position: relative;">
+                                        <canvas id="dev-data-chart" data-url="{% url 'dev_data'  %}"></canvas>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; ATC Capital Partners</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+
+    
+    
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    
+    
+
+
+
+    <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+
+    <script src="{% static 'vendor/datatables/RowGroup-1.1.2/js/dataTables.rowGroup.min.js' %}"></script>
+
+
+    <script src="{% static 'vendor/datatables/datatables.mark.js-master/src/datatables.mark.js' %}"></script>
+
+    <script src="{% static 'vendor/datatables/datatables-mark.js' %}"></script>
+
+
+
+    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+
+    <!-- JQuery-->
+
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-colorschemes"></script>
+
+    <!-- Page level custom scripts -->
+
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+
+    <script>
+        
+
+        $(function () {
+
+                var ticker_string = "{{ ticker_string }}"
+
+                $('#comment_table thead tr').clone(true).appendTo('#comment_table thead').find("th").text("").end();
+
+                $('#comment_table thead tr:eq(1) th:eq(3)').each(function (i) {
+
+                    $(this).addClass("source_select_column")
+
+
+                    select_source_form_text = `<div id='source_filter_holder'>{{ source_filter_form }}</div>`;
+
+                    $(this).html(select_source_form_text);
+
+
+
+                    $("#id_source_select_form").on('change', function () {
+
+                        $('#comment_table').DataTable().ajax.reload();
+                    });
+                });
+
+
+
+                // Date renderer for DataTables from cdn.datatables.net/plug-ins/1.10.21/dataRender/datetime.js
+                $.fn.dataTable.render.moment = function (from, to, locale) {
+                    // Argument shifting
+                    if (arguments.length === 1) {
+                        locale = 'en';
+                        to = from;
+                        from = 'YYYY-MM-DD';
+                    }
+                    else if (arguments.length === 2) {
+                        locale = 'en';
+                    }
+
+                    return function (d, type, row) {
+                        if (!d) {
+                            return type === 'sort' || type === 'type' ? 0 : d;
+                        }
+
+                        var m = window.moment(d, from, locale, true);
+
+                        // Order and type get a number value from Moment, everything else
+                        // sees the rendered value
+                        return m.format(type === 'sort' || type === 'type' ? 'x' : to);
+                    };
+                };
+
+
+
+
+                //#comment_table table DataTables definition 
+                var comment_table = $('#comment_table').DataTable({
+                    "mark": true,
+                    "orderCellsTop": true,
+                    "fixedHeader": true,
+                    "serverSide": true,
+
+                    "ajax": {
+                        "url": "/comment_table_api/?format=datatables",
+                        "type": "GET",
+
+                        "data": function (d) {
+                            d.selected_sectors = $("#sector_select_form").serialize();
+                            d.selected_companies = $("#company_select_form").serialize();
+                            d.selected_sources = $("#id_source_select_form").serialize();
+                            d.selected_topics = $("#id_topic_select_form").serialize();
+
+                        },
+
+
+                    },
+
+                    "order": [
+                        [1, "desc"]
+                    ],
+
+                    "scrollY": '51.2vh',
+                    "pagingType": "simple",
+                    "pageLength": 20,
+                    "dom": '<"toolbar">frtip',
+
+                    "info": false,
+                    "responsive": true,
+                    "oLanguage": {
+                        "sSearch": "search feed:"
+                    },
+                    columns: [
+                        { data: 'id' },
+                        { data: 'posted_date', render: $.fn.dataTable.render.moment('MMM D YYYY') },
+                        { data: 'content_summary' },
+                        { data: 'source' },
+                        { data: 'username' },
+                        { data: 'companies__company' },
+                        { data: 'consolidatedsearchparam__term_array' }
+                    ]
+
+                });
+
+
+
+
+
+                var company_table = $('#company_table').DataTable({
+                    "mark": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "/company_api/?format=datatables",
+                        "type": "GET",
+
+                        "data": function (d) {
+                            d.selected_sectors = $("#sector_select_form").serialize();
+                            d.selected_companies = $("#company_select_form").serialize();
+                            d.selected_sources = $("#id_source_select_form").serialize();
+                            d.selected_topics = $("#id_topic_select_form").serialize();
+
+                        },
+
+                    },
+
+                    "order": [
+                        [0, "desc"]
+                    ],
+
+                    "scrollY": '51vh',
+                    "pageLength": 50,
+                    "scrollCollapse": true,
+                    "scroller": true,
+                    "dom": '<"toolbar">frtip',
+
+                    "info": false,
+                    "responsive": true,
+                    "oLanguage": {
+                        "sSearch": "filter companies:"
+                    }
+
+                });
+
+
+
+
+                //#job_table table DataTables definition 
+                var job_table = $('#job_table').DataTable({
+                    "mark": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "/job_table_api/?format=datatables",
+                        "type": "GET",
+
+                        "data": function (d) {
+                            d.selected_sectors = $("#sector_select_form").serialize();
+                            d.selected_companies = $("#company_select_form").serialize();
+                            d.selected_sources = $("#id_source_select_form").serialize();
+                            d.selected_topics = $("#id_topic_select_form").serialize();
+
+                        },
+
+                    },
+
+                    "order": [
+                        [0, "desc"]
+                    ],
+
+                    "scrollY": '51vh',
+                    "pageLength": 50,
+                    "scrollCollapse": true,
+                    "scroller": true,
+                    "pagingType": "simple",
+                    "dom": '<"toolbar">frtip',
+
+                    "info": false,
+                    "responsive": true,
+                    "oLanguage": {
+                        "sSearch": "search feed:"
+                    }
+
+                });
+
+
+
+
+                Chart.defaults.global.defaultFontSize = 9;
+
+
+                var $devDataChart = $("#dev-data-chart");
+                $.ajax({
+                    url: $devDataChart.data("url"),
+                    success: function (data) {
+
+
+
+                        var ctx = $devDataChart[0].getContext('2d');
+
+                        if (window.hasOwnProperty("dev_data_chart")) {
+                            dev_data_chart.destroy();
+                        }
+
+                        dev_data_chart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                datasets: JSON.parse(data)
+                            },
+
+
+                            options: {
+
+                                plugins: {
+                                    colorschemes: {
+                                        scheme: 'brewer.Paired12'
+                                    }
+                                },
+
+                                scales: {
+                                    xAxes: [{
+                                        type: 'time'
+                                    }]
+                                },
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                legend: {
+                                    position: 'top',
+                                },
+                                title: {
+                                    display: false,
+                                    text: 'Dev Data'
+                                }
+                            }
+                        });
+
+                    }
+                });
+
+
+
+
+
+                function CommentAggChart(search) {
+                    var $comment_aggChart = $("#comment_agg-chart");
+
+                    $.ajax({
+
+                        url: $comment_aggChart.data("url"),
+
+                        data: {
+                            "search": search,
+                            "selected_sectors": $("#sector_select_form").serialize(),
+                            "selected_companies": $("#company_select_form").serialize(),
+                            "selected_sources": $("#id_source_select_form").serialize(),
+                            "selected_topics": $("#id_topic_select_form").serialize()
+
+                        },
+
+                        success: function (data) {
+
+
+
+                            var ctx = $comment_aggChart[0].getContext('2d');
+                            if (window.hasOwnProperty("comment_agg_chart")) {
+                                comment_agg_chart.destroy();
+                            }
+
+                            comment_agg_chart = new Chart(ctx, {
+                                type: 'horizontalBar',
+                                data: {
+                                    labels: JSON.parse(data).labels,
+                                    datasets: [
+                                        {
+                                            label: "Activity",
+                                            data: JSON.parse(data).data
+                                        }
+                                    ]
+                                },
+                                options: {
+
+                                    plugins: {
+                                        colorschemes: {
+                                            scheme: 'brewer.Paired12'
+                                        }
+                                    },
+
+                                    responsive: true,
+                                    defaultFontSize: 8,
+                                    maintainAspectRatio: false,
+
+                                    legend: { display: false },
+                                    title: {
+                                        display: false,
+                                        text: 'ACTIVITY'
+                                    }
+                                }
+                            });
+
+                        }
+                    });
+
+
+
+                }
+
+                CommentAggChart()
+
+
+
+
+
+                $("#comment_table_filter input")
+                    .unbind()
+                    .bind('keyup change', function (e) {
+
+                        if (e.keyCode == 13 || this.value == "") {
+
+
+                            comment_table
+                                .search(this.value)
+                                .draw();
+
+                            CommentAggChart(this.value);
+
+
+
+                        }
+                    });
+
+
+                $("#job_table_filter input")
+                    .unbind()
+                    .bind('keyup change', function (e) {
+
+               
+                        if (e.keyCode == 13 || this.value == "") {
+
+                            job_table
+                                .search(this.value)
+                                .draw();
+
+                            DolJobListingAggChart(this.value);
+
+
+
+                        }
+                    });
+
+
+                //doljoblisting chart creation function #doljoblisting_agg-chart
+
+                function DolJobListingAggChart(search) {
+                    var $doljoblisting_aggChart = $("#doljoblisting_agg-chart");
+
+                    $.ajax({
+                        url: $doljoblisting_aggChart.data("url"),
+
+                        data: {
+                            "search": search,
+                            "selected_sectors": $("#sector_select_form").serialize(),
+                            "selected_companies": $("#company_select_form").serialize(),
+                            "selected_sources": $("#id_source_select_form").serialize(),
+                            "selected_topics": $("#id_topic_select_form").serialize()
+
+                        },
+
+                        success: function (data) {
+
+                            var ctx = $doljoblisting_aggChart[0].getContext('2d');
+
+                            if (window.hasOwnProperty("doljoblisting_agg_chart")) {
+                                doljoblisting_agg_chart.destroy();
+                            }
+
+                            doljoblisting_agg_chart = new Chart(ctx, {
+                                type: 'horizontalBar',
+                                data: {
+                                    labels: JSON.parse(data).labels,
+                                    datasets: [
+                                        {
+                                            label: "Activity",
+
+                                            data: JSON.parse(data).data
+                                        }
+                                    ]
+                                },
+                                options: {
+                                    plugins: {
+                                        colorschemes: {
+                                            scheme: 'brewer.Paired12'
+                                        }
+                                    },
+
+                                    responsive: true,
+                                    defaultFontSize: 8,
+                                    maintainAspectRatio: false,
+
+                                    legend: { display: false },
+                                    title: {
+                                        display: false,
+                                        text: 'ACTIVITY'
+                                    }
+                                }
+                            });
+
+                        }
+                    });
+                }
+
+                DolJobListingAggChart()
+
+
+                $("#company_select_form").on('change', function () {
+
+                    $('#job_table').DataTable().ajax.reload();
+
+                    $('#comment_table').DataTable().ajax.reload();
+
+                    $('#company_table').DataTable().ajax.reload();
+
+                    CommentAggChart();
+
+                    DolJobListingAggChart()
+
+                });
+
+                $("#sector_select_form").on('change', function () {
+
+                    $('#job_table').DataTable().ajax.reload();
+
+                    $('#comment_table').DataTable().ajax.reload();
+
+                    $('#company_table').DataTable().ajax.reload();
+
+                    CommentAggChart();
+
+                    DolJobListingAggChart()
+
+                });
+
+
+                $("#topic_select_form").on('change', function () {
+
+                    $('#job_table').DataTable().ajax.reload();
+
+                    $('#comment_table').DataTable().ajax.reload();
+
+                    $('#company_table').DataTable().ajax.reload();
+
+
+                    CommentAggChart();
+
+                    DolJobListingAggChart()
+
+                });
+
+
+
+                $('#id_sector_filter_form').select2();
+
+                $('#id_topic_select_form').select2();
+
+                $('#id_company_select_form').select2();
+
+                $('#id_source_select_form').select2({ placeholder: "filter source", width: 'resolve' });
+
+
+
+
+        
+
+        });
+    </script>
+
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

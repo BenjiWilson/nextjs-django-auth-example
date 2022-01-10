@@ -1,0 +1,35 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'core.css' %}">
+{% comment %} <script src="{% static 'ticker_data.js' %}"></script> {% endcomment %}
+
+
+
+<html>
+ <div class='dewey_site__ticker_container'>
+ <div id='dewey_site__dewey_header'><div class='dewey_site__dewey_masthead'><div style='text-align:left; width:15%; float:left; margin-left:5px'>D E W E Y</div><div id='dewey_site__dewey_ticker_header'></div><div style='text-align:right; width:12%; float:right'><a style='color:#bed1da' href='mailto:info@joindewey.com'>Feedback?</a></div></div></div><div class='dewey_site__row'><div class='dewey_site__dewey_column_left' style='text-align:center'><div class='dewey_site__dewey_metric_title''>Trading Ranges</div> <div id='dewey_site__price_action'></div><div class='dewey_site__dewey_metric_title''>Market Cap</div><div id='dewey_site__marketcap_chart'></div><div class='dewey_site__dewey_metric_title''>P/E (NTM)</div><div id='dewey_site__pe_chart'></div><div class='dewey_site__dewey_metric_title''>P/S (TTM)</div><div id='dewey_site__ps_chart'></div></div> <div class='dewey_site__dewey_column_right'><div id='dewey_site__dewey_article_list'>
+{% if object %}
+
+   {% for article in articles %}
+     {% if article.content_type == 'tweet' %}
+    <li class='dewey_site__tweet_listing'><span style='top:-5px; position:relative;'><span class='dewey_site__small_article_text'>{{article.pub_date}} -</span> <a class='dewey_site__dewey_link' href='{{article.url}}'>{{article.title}}</a><span class='dewey_site__small_article_text'> - {{article.source }} </span></span></li>
+    
+    {% elif article.content_type == 'article' %}
+    <li class='dewey_site__article_listing'><span style='top:-5px; position:relative;'><span class='dewey_site__small_article_text'>{{article.pub_date}} -</span> <a class='dewey_site__dewey_link' href='{{article.url}}'>{{article.title}}</a><span class='dewey_site__small_article_text'> - {{article.source }} </span></span></li>
+    
+    {% endif %}
+
+
+    {% endfor %}
+
+
+{% else %}
+    <p>No articles.</p>
+{% endif %}</div> </div> </div>
+
+</div>
+
+</html>
+
+{% include "./ticker_data.html" %} 
+
