@@ -6,13 +6,13 @@ from django.views.generic import TemplateView
 
 from . import serializers
 
-class Feed(TemplateView):
-    template_name = 'api/feed.html'
-    def get_context_data(self, **kwargs):
-        current_user = self.request.user
-        print("current_user:")
-        print(current_user)
-        return context    
+# class Feed(TemplateView):
+#     template_name = 'api/feed.html'
+#     def get_context_data(self, **kwargs):
+#         current_user = self.request.user
+#         print("current_user:")
+#         print(current_user)
+#         return context    
 
 class Profile(generics.RetrieveAPIView):
     permission_classes = (IsAuthenticated,)
